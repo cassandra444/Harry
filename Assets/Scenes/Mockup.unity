@@ -8674,7 +8674,6 @@ GameObject:
   - component: {fileID: 315981913}
   - component: {fileID: 315981912}
   - component: {fileID: 315981914}
-  - component: {fileID: 315981915}
   m_Layer: 0
   m_Name: CharaController_V1
   m_TagString: Untagged
@@ -8710,7 +8709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 930aac808741eb8449d874a213547feb, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -8786,27 +8785,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 315981910}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c4e4357c78688e4d9987410b6401031, type: 3}
+  m_Script: {fileID: 11500000, guid: aaf8170292d5ce743980eda68faf603d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 315981912}
   controller: {fileID: 315981913}
-  speed: 6
-  turnSmoothTime: 0.1
-  turnSmoothVelocity: 0
---- !u!114 &315981915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 315981910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 814bdf66d1546504e9091c384ae520eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerInput: {fileID: 315981912}
+  playerTransform: {fileID: 315981911}
 --- !u!1 &392151278
 GameObject:
   m_ObjectHideFlags: 0
