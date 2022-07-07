@@ -16,7 +16,7 @@ public class Walking: PlayerBase
     private CharacterController controller;
     private Transform playerTransform;
 
-    public Walking (PlayerMovementSM playerStateMachine) : base("Standing", playerStateMachine) {
+    public Walking (PlayerMovementSM playerStateMachine) : base("Walking", playerStateMachine) {
         sm = (PlayerMovementSM)playerStateMachine;
         controller = sm.controller;
         playerTransform = sm.playerTransform;
@@ -24,7 +24,6 @@ public class Walking: PlayerBase
 
     public override void Enter()
     {
-        Debug.Log("On Walking State");
         base.Enter();       
     }
 

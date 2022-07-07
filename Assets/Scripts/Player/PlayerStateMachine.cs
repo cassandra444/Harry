@@ -18,6 +18,8 @@ public class PlayerStateMachine : MonoBehaviour
     {
         if (currentState != null)
             currentState.Update();
+
+        Debug.Log(currentState);
     }
 
     protected virtual PlayerBase GetInitialState()
@@ -36,9 +38,9 @@ public class PlayerStateMachine : MonoBehaviour
     //show the current state on screen
     private void OnGUI()
     {
-        GUILayout.BeginArea(new Rect(10f, 10f, 200f, 100f));
-        string content = currentState.name ;
-        GUILayout.Label($"<color='black'><size=40>{content}</size></color>");
+        GUILayout.BeginArea(new Rect(10f, 10f, 100f, 100f));
+        string content = "Current State : " + currentState.name;
+        GUILayout.Label($"<color='black'><size=20>{content}</size></color>");
         GUILayout.EndArea();
     }
 }

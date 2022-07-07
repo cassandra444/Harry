@@ -18,7 +18,6 @@ public class Standing : PlayerBase
 
     public override void Update()
     {
-        Debug.Log("On Standing state");
         base.Update();
        
         float playerDirectionX = sm.playerInput.actions["Movements"].ReadValue<Vector2>().x;
