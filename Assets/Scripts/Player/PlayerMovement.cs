@@ -13,31 +13,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed = 6f;
     [SerializeField] private float turnSmoothTime = 0.1f;
     [SerializeField] private float turnSmoothVelocity;
-
-    void Awake()
-    {
-        playerInput.actions["Interact"].performed += Interact;
-        playerInput.actions["Movements"].performed += Move ;
-
-    }
-
-    public void Interact(InputAction.CallbackContext callback)
-    {
-        Debug.Log("Player is interacting");
-    }
-
-    public void Move(InputAction.CallbackContext callback)
-    {
-        Debug.Log(playerInput.actions["Movements"].ReadValueAsObject());
-          
-    }
+  
     void Update()
     {
-    
-       /*float horizontal = Input.GetAxisRaw("Horizontal");
-       float vertical = Input.GetAxisRaw("Vertical");
-       float horizontal = InputAction.
-       Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+       
+        Vector2 playerDirection = (playerInput.actions["Movements"].ReadValue<Vector2>());
+        Vector3 direction = new Vector3(playerDirection.x, 0f, playerDirection.y).normalized;
 
         if (direction.magnitude >= 0.1f)
         {
@@ -46,6 +27,6 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             controller.Move(direction * speed * Time.deltaTime);
-        }*/
+        }
     }
 }
