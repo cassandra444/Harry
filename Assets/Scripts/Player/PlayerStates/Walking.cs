@@ -7,12 +7,13 @@ using UnityEngine.InputSystem;
 public class Walking: PlayerBase
 {
     [SerializeField] private float speed = 1.5f;
-    [SerializeField] private float turnSmoothTime = 0.1f;
+    [SerializeField] private float turnSmoothTime = 0.3f;
     [SerializeField] private float turnSmoothVelocity;
 
     private PlayerMovementSM sm;
     private float playerDirectionX;
     private float playerDirectionZ;
+    private bool checkButton;
     private CharacterController controller;
     private Transform playerTransform;
 
@@ -32,6 +33,7 @@ public class Walking: PlayerBase
         base.Update();
         playerDirectionX = (sm.playerInput.actions["Movements"].ReadValue<Vector2>()).x;
         playerDirectionZ = (sm.playerInput.actions["Movements"].ReadValue<Vector2>()).y;
+
         Vector3 direction = new Vector3(playerDirectionX, 0f, playerDirectionZ).normalized;
         
 

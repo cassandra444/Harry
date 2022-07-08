@@ -33,16 +33,20 @@ public class PlayerAnimations : MonoBehaviour
 
         if (velocityX == 1.0f || velocityX == -1.0f || velocityY == 1.0f || velocityY == -1.0f && direction != Vector3.zero)
         {
-            globalVelocity = 1;
+            //globalVelocity = 1;
+
+            globalVelocity = Mathf.Lerp(globalVelocity, 1, 0.5f);
            
         }
 
         if(velocityX == 0f && velocityY == 0f && direction == Vector3.zero)
         {
-            globalVelocity = 0;
+            globalVelocity = Mathf.Lerp(globalVelocity, 0, 0.5f);
         }
 
         playerAnimator.SetFloat(VelocityHash, globalVelocity);
+
+        Debug.Log(globalVelocity);
        
     }
 }

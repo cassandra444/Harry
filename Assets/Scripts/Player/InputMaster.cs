@@ -127,7 +127,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""7d0c277a-36c5-44eb-9bbe-080d3f38b0c7"",
-                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -138,7 +138,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""0241e345-af58-48c3-895a-5ad9ff772fa9"",
-                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -149,7 +149,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""2ee5721b-0b24-4aaf-8f0d-3dd995042cfb"",
-                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -160,7 +160,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""bfa50f10-1e68-4cce-a324-c02f37f9f92d"",
-                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
