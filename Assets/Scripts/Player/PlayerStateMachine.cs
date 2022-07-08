@@ -19,7 +19,6 @@ public class PlayerStateMachine : MonoBehaviour
         if (currentState != null)
             currentState.Update();
 
-        Debug.Log(currentState);
     }
 
     protected virtual PlayerBase GetInitialState()

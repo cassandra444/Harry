@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class Walking: PlayerBase
 {
-    [SerializeField] private float speed = 6f;
+    [SerializeField] private float speed = 1.5f;
     [SerializeField] private float turnSmoothTime = 0.1f;
     [SerializeField] private float turnSmoothVelocity;
 
