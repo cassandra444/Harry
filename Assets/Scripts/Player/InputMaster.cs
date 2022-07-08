@@ -61,7 +61,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": ""KeyboardVector"",
                     ""id"": ""6a458de9-3d51-4b06-b5c6-d3b106d62510"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
