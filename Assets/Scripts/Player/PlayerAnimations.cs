@@ -1,21 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerAnimations : MonoBehaviour
 {
     [SerializeField] private Animator playerAnimator;
-    [SerializeField] private PlayerMovementSM sm;
+    [SerializeField] private Rigidbody playerRb;
+    [SerializeField] private NavMeshAgent agent;
     
-    // try to turn private
-    float velocityX = 0.0f;
-    float velocityY = 0.0f;
-
-    float globalVelocity = 0.0f;
-    float maxGlobalVelocity = 1f;
-    float minGlobalVelocity = 0f;
-
-
+    
+    float velocity= 0.0f;
     public float acceleration = 0.2f;
     public float decceleration = 0.01f;
     int VelocityHash;
@@ -28,29 +23,22 @@ public class PlayerAnimations : MonoBehaviour
     }
 
     private void Update()
-    {
-        
-        velocityX = (sm.playerInput.actions["Movements"].ReadValue<Vector2>()).x;
-        velocityY = (sm.playerInput.actions["Movements"].ReadValue<Vector2>()).y;
-        Vector3 direction = new Vector3(velocityX, 0f, velocityY).normalized;
+    {             
+        if (velocity < 0f)
+            velocity = 0f;
+        if (velocity > 1f)
+            velocity = 1f;
 
-        if (globalVelocity < 0f)
-            globalVelocity = 0f;
-        if (globalVelocity > 1f)
-            globalVelocity = 1f;
+         if (agent.velocity. magnitude > 0)
+         { 
+            velocity += Time.deltaTime * acceleration;
+         }
 
-        if (velocityX == 1.0f || velocityX == -1.0f || velocityY == 1.0f || velocityY == -1.0f && direction != Vector3.zero)
-        {
-
-            globalVelocity = globalVelocity += 0.97f * Time.deltaTime;
-           
+         if(agent.velocity.magnitude <= 0.1)
+         {         
+            velocity -= Time.deltaTime * decceleration;
         }
 
-        if(velocityX == 0f && velocityY == 0f && direction == Vector3.zero)
-        {
-            globalVelocity = globalVelocity -= 0.95f * Time.deltaTime;
-        }
-
-        playerAnimator.SetFloat(VelocityHash, globalVelocity);
+        playerAnimator.SetFloat(VelocityHash, velocity);
     }
 }
