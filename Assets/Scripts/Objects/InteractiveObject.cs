@@ -1,31 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 
 public class InteractiveObject : MonoBehaviour
 {
     private bool playerInRange;
-    private bool PlayerIsInteracting;
+    private bool playerInteract;
+    private bool mouseEnter;
 
     [SerializeField] private Animator objectAnimator;
     [SerializeField] private AudioSource objectAudioSource;
     [SerializeField] private VisualEffect objectVFX;
-    [SerializeField] private GameObject interactUI;
-    [SerializeField] private GameObject backUI;
+    [SerializeField] private Renderer objectRenderer;
 
-    private void Start()
-    {
-        playerInRange = false;
-        PlayerIsInteracting = false;
-        objectVFX.Stop();
 
-        interactUI.SetActive(false);
-        backUI.SetActive(false);
-    }
-
-    void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -33,14 +22,27 @@ public class InteractiveObject : MonoBehaviour
         }
     }
 
-     void OnTriggerExit(Collider other)
+     public void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {          
             playerInRange = false;
-            PlayerIsInteracting = false;
         }
     }
+
+    private void OnMouseEnter()
+    {
+        objectRenderer.material.color = Color.red;
+        mouseEnter = true;
+    }
+
+    private void OnMouseExit()
+    {
+        objectRenderer.material.color = Color.white;
+        mouseEnter = false;
+    }
+
+    
 
     private void PlayObject()
     {
@@ -56,36 +58,21 @@ public class InteractiveObject : MonoBehaviour
         objectAudioSource.Stop();
         objectVFX.Stop();
     }
+
+
     
 
     void Update()
     {
-        if(playerInRange == true && PlayerIsInteracting == false)
+        if (mouseEnter == true && Input.GetMouseButton(0))
         {
-            interactUI.SetActive(true);
-            backUI.SetActive(false);
-        }else if (playerInRange == true && PlayerIsInteracting == true)
-        {
-            interactUI.SetActive(false);
-            backUI.SetActive(true);
-        }
-        else
-        {
-            interactUI.SetActive(false);
-            backUI.SetActive(false);
+            playerInteract = true;
         }
 
-
-        if(Input.GetKey(KeyCode.E) && playerInRange==true && PlayerIsInteracting == false)
+        if (playerInteract == true && playerInRange == true)
         {
-            PlayerIsInteracting = true;
             PlayObject();
         }
-        else if(Input.GetKey(KeyCode.A) && playerInRange==true && PlayerIsInteracting==true)
-        {
-            StopObject();
-            PlayerIsInteracting = false;
-        }
-       
+        else StopObject();
     }
 }
