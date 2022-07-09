@@ -1,36 +1,91 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class InteractiveObject : MonoBehaviour
 {
-    [SerializeField]  float interactSphereRadius = 1f;
-   
-    [SerializeField]  float lookSphereRadius = 1f;
+    private bool playerInRange;
+    private bool PlayerIsInteracting;
+
+    [SerializeField] private Animator objectAnimator;
+    [SerializeField] private AudioSource objectAudioSource;
+    [SerializeField] private VisualEffect objectVFX;
+    [SerializeField] private GameObject interactUI;
+    [SerializeField] private GameObject backUI;
 
     private void Start()
     {
-       
+        playerInRange = false;
+        PlayerIsInteracting = false;
+        objectVFX.Stop();
+
+        interactUI.SetActive(false);
+        backUI.SetActive(false);
     }
 
-     void InteractZone()
+    void OnTriggerEnter(Collider other)
     {
-       if(Physics.CheckSphere(transform.position, interactSphereRadius, 3))
-        {          
-                Debug.Log("Player in Interact Zone ! ");
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
         }
     }
 
-     void Update()
+     void OnTriggerExit(Collider other)
     {
-        InteractZone();
+        if (other.CompareTag("Player"))
+        {          
+            playerInRange = false;
+            PlayerIsInteracting = false;
+        }
     }
 
-    void DrawCheckSphere()
+    private void PlayObject()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position, interactSphereRadius);
+        objectAnimator.SetBool("AnimateObject", true);
+        objectAudioSource.Play();
+        objectVFX.Play();
+        
     }
 
+    private void StopObject ()
+    {
+        objectAnimator.SetBool("AnimateObject", false);
+        objectAudioSource.Stop();
+        objectVFX.Stop();
+    }
+    
 
+    void Update()
+    {
+        if(playerInRange == true && PlayerIsInteracting == false)
+        {
+            interactUI.SetActive(true);
+            backUI.SetActive(false);
+        }else if (playerInRange == true && PlayerIsInteracting == true)
+        {
+            interactUI.SetActive(false);
+            backUI.SetActive(true);
+        }
+        else
+        {
+            interactUI.SetActive(false);
+            backUI.SetActive(false);
+        }
+
+
+        if(Input.GetKey(KeyCode.E) && playerInRange==true && PlayerIsInteracting == false)
+        {
+            PlayerIsInteracting = true;
+            PlayObject();
+        }
+        else if(Input.GetKey(KeyCode.A) && playerInRange==true && PlayerIsInteracting==true)
+        {
+            StopObject();
+            PlayerIsInteracting = false;
+        }
+       
+    }
 }
