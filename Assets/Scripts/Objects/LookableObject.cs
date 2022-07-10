@@ -6,20 +6,17 @@ using UnityEngine.VFX;
 using UnityEngine.AI;
 
 public class LookableObject : MonoBehaviour
-{
-    [SerializeField] private AudioSource objectAudioSource;
-    [SerializeField] private VisualEffect objectVFX;
-
+{   
     private bool playerInRange;
     private bool playerInteract;
     private bool mouseEnter;
     private bool objectPlayed;
+    public bool GoFeedback;
 
     [SerializeField] private NavMeshAgent playerAgent;
     [SerializeField] private GameObject cachePlane;
 
     [SerializeField] private float rotationSpeed = 1f;
-
     [SerializeField] private Animator objectAnimator;
     
     [SerializeField] private Renderer objectRenderer;
@@ -33,8 +30,6 @@ public class LookableObject : MonoBehaviour
         objectRenderer.enabled = true;
         objectRenderer.sharedMaterial = material[0];
         cachePlane.SetActive(false);
-        objectVFX.Stop();
-        objectAudioSource.Stop();
     }
 
 
@@ -80,7 +75,7 @@ public class LookableObject : MonoBehaviour
 
     private void PlayObject()
     {
-        
+        GoFeedback = true;
         objectAnimator.SetBool("AnimateObject", true);
         lookableobject.position = new Vector3(cameraObjectSlot.position.x, cameraObjectSlot.position.y, cameraObjectSlot.position.z);
         objectRenderer.sharedMaterial = material[0];
@@ -88,15 +83,12 @@ public class LookableObject : MonoBehaviour
         RotateOBject();
         playerAgent.speed = 0.01f;
         cachePlane.SetActive(true);
-        objectAudioSource.Play();
-        objectVFX.Play();
 
     }
 
     private void StopObject ()
     {
-        objectAudioSource.Stop();
-        objectVFX.Stop();
+        GoFeedback = false;
         objectAnimator.SetBool("AnimateObject", false);
         objectPlayed = false;
         playerInteract = false;
@@ -104,8 +96,6 @@ public class LookableObject : MonoBehaviour
         lookableobject.position = new Vector3(objectSlot.position.x, objectSlot.position.y, objectSlot.position.z);
         playerAgent.speed = 1.5f;
         cachePlane.SetActive(false);
-
-        
     }
     
 

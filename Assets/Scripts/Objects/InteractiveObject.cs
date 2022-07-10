@@ -7,10 +7,9 @@ public class InteractiveObject : MonoBehaviour
     private bool playerInRange;
     private bool playerInteract;
     private bool mouseEnter;
+    public bool GoFeedback;
 
     [SerializeField] private Animator objectAnimator;
-    [SerializeField] private AudioSource objectAudioSource;
-    [SerializeField] private VisualEffect objectVFX;
     [SerializeField] private Renderer objectRenderer;
 
     public Material[] material;
@@ -19,8 +18,6 @@ public class InteractiveObject : MonoBehaviour
     {
         objectRenderer.enabled = true;
         objectRenderer.sharedMaterial = material[0];
-        objectAudioSource.Stop();
-        objectVFX.Stop();
     }
 
 
@@ -56,12 +53,14 @@ public class InteractiveObject : MonoBehaviour
 
     private void PlayObject()
     {
-        objectAnimator.SetBool("AnimateObject", true);             
+        objectAnimator.SetBool("AnimateObject", true);
+        GoFeedback = true;
     }
 
     private void StopObject ()
     {
         objectAnimator.SetBool("AnimateObject", false);
+        GoFeedback = false;
     }
 
 
