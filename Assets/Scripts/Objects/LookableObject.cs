@@ -7,13 +7,16 @@ public class LookableObject : MonoBehaviour
     private bool playerInRange;
     private bool playerInteract;
     private bool mouseEnter;
+    private bool objectPlayed;
+
+    [SerializeField] private float rotationSpeed = 1f;
 
     [SerializeField] private Animator objectAnimator;
     [SerializeField] private AudioSource objectAudioSource;
     [SerializeField] private VisualEffect objectVFX;
     [SerializeField] private Renderer objectRenderer;
     [SerializeField] private Transform cameraObjectSlot;
-    [SerializeField] private GameObject lookableobject;
+    [SerializeField] private Transform lookableobject;
     [SerializeField] private Transform objectSlot;
     public Material[] material;
 
@@ -52,15 +55,28 @@ public class LookableObject : MonoBehaviour
         mouseEnter = false;
     }
 
-    
+    void RotateOBject()
+    {
+        if (objectPlayed == true)
+        {
+            float XaxisRotation = Input.GetAxis("Mouse X") * rotationSpeed;
+            float YaxisRotation = Input.GetAxis("Mouse Y") * rotationSpeed;
+
+            lookableobject.Rotate(Vector3.down, XaxisRotation);
+            lookableobject.Rotate(Vector3.right, YaxisRotation);
+        }
+    }
 
     private void PlayObject()
     {
         objectAnimator.SetBool("AnimateObject", true);
         objectAudioSource.Play();
         objectVFX.Play();
-        lookableobject.transform.position = new Vector3(cameraObjectSlot.position.x, cameraObjectSlot.position.y, cameraObjectSlot.position.z);
+        lookableobject.position = new Vector3(cameraObjectSlot.position.x, cameraObjectSlot.position.y, cameraObjectSlot.position.z);
         objectRenderer.sharedMaterial = material[0];
+        objectPlayed = true;
+        RotateOBject();
+       
 
     }
 
@@ -69,8 +85,9 @@ public class LookableObject : MonoBehaviour
         objectAnimator.SetBool("AnimateObject", false);
         objectAudioSource.Stop();
         objectVFX.Stop();
+        objectPlayed = false;
 
-        lookableobject.transform.position = new Vector3(objectSlot.position.x, objectSlot.position.y, objectSlot.position.z);
+        lookableobject.position = new Vector3(objectSlot.position.x, objectSlot.position.y, objectSlot.position.z);
 
     }
 
@@ -89,5 +106,7 @@ public class LookableObject : MonoBehaviour
             PlayObject();
         }
         else StopObject();
+      
+
     }
 }
