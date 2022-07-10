@@ -34697,6 +34697,9 @@ MonoBehaviour:
   objectAudioSource: {fileID: 919132148876371540}
   objectVFX: {fileID: 817871253}
   objectRenderer: {fileID: 2619430818228232451}
+  material:
+  - {fileID: 2100000, guid: 022ab4d8173c5274f8a2c6020c3a2ce2, type: 2}
+  - {fileID: 2100000, guid: 66908c9f3c36d2447b4e7ec53542e586, type: 2}
 --- !u!95 &919132148876371538 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 2619430816573410626, guid: 7882bd093a9466d4398ddc8fe8fd6ad7, type: 3}

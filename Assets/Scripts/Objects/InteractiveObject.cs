@@ -12,6 +12,13 @@ public class InteractiveObject : MonoBehaviour
     [SerializeField] private AudioSource objectAudioSource;
     [SerializeField] private VisualEffect objectVFX;
     [SerializeField] private Renderer objectRenderer;
+    public Material[] material;
+
+    private void Start()
+    {
+        objectRenderer.enabled = true;
+        objectRenderer.sharedMaterial = material[0];
+    }
 
 
     public void OnTriggerEnter(Collider other)
@@ -32,13 +39,13 @@ public class InteractiveObject : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        objectRenderer.material.color = Color.red;
+        objectRenderer.sharedMaterial = material[1];
         mouseEnter = true;
     }
 
     private void OnMouseExit()
     {
-        objectRenderer.material.color = Color.white;
+        objectRenderer.sharedMaterial = material[0];
         mouseEnter = false;
     }
 
