@@ -11,6 +11,10 @@ public class PlayerMove : MonoBehaviour
     private string groundTag = "Ground";
     private RaycastHit hit;
 
+    private void Start()
+    {
+        //agent.speed = agentSpeed;
+    }
     private void PlayerFollowsMouse()
     {
         Ray ray = pcamera.ScreenPointToRay(Input.mousePosition);
@@ -19,13 +23,14 @@ public class PlayerMove : MonoBehaviour
         {
             if (hit.collider.CompareTag(groundTag))
             {
-                agent.SetDestination(hit.point);
+                agent.SetDestination(hit.point);               
             }
         }
     }
 
     public void Update()
     {
+        
         if (Input.GetMouseButtonDown(0))
         {
             PlayerFollowsMouse();

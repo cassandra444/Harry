@@ -12,12 +12,15 @@ public class InteractiveObject : MonoBehaviour
     [SerializeField] private AudioSource objectAudioSource;
     [SerializeField] private VisualEffect objectVFX;
     [SerializeField] private Renderer objectRenderer;
+
     public Material[] material;
 
     private void Start()
     {
         objectRenderer.enabled = true;
         objectRenderer.sharedMaterial = material[0];
+        objectAudioSource.Stop();
+        objectVFX.Stop();
     }
 
 
@@ -53,17 +56,12 @@ public class InteractiveObject : MonoBehaviour
 
     private void PlayObject()
     {
-        objectAnimator.SetBool("AnimateObject", true);
-        objectAudioSource.Play();
-        objectVFX.Play();
-        
+        objectAnimator.SetBool("AnimateObject", true);             
     }
 
     private void StopObject ()
     {
         objectAnimator.SetBool("AnimateObject", false);
-        objectAudioSource.Stop();
-        objectVFX.Stop();
     }
 
 

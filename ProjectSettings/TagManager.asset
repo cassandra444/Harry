@@ -12,7 +12,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - LookableObject
   - 
   - PostProcessing
   - Not in Reflection
