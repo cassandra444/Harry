@@ -8107,8 +8107,6 @@ GameObject:
   - component: {fileID: 315981911}
   - component: {fileID: 315981916}
   - component: {fileID: 315981913}
-  - component: {fileID: 315981915}
-  - component: {fileID: 315981912}
   - component: {fileID: 315981914}
   - component: {fileID: 315981917}
   m_Layer: 0
@@ -8134,20 +8132,6 @@ Transform:
   m_Father: {fileID: 515261266}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &315981912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 315981910}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bda20fd1bf0ff44886c767a6f5221d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 315981916}
-  pcamera: {fileID: 559188009}
 --- !u!136 &315981913
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8178,23 +8162,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &315981915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 315981910}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c68abbdf47fb4e45ae16efcca6f7994, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerAnimator: {fileID: 1061252942}
-  playerRb: {fileID: 0}
-  agent: {fileID: 315981916}
-  acceleration: 2
-  decceleration: 2
 --- !u!195 &315981916
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -8232,9 +8199,6 @@ MonoBehaviour:
   playerAgent: {fileID: 315981916}
   playerCamera: {fileID: 559188009}
   playerAnimator: {fileID: 1061252942}
-  layermask:
-    serializedVersion: 2
-    m_Bits: 8
   _acceleration: 2
   _decceleration: 2
   _velocity: 0
@@ -8592,30 +8556,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &561185684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148288411131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15f8884f628613f4ea0b8cbbeb34f477, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GoFeedback: 0
-  playerAgent: {fileID: 315981916}
-  cachePlane: {fileID: 1392414973}
-  rotationSpeed: 2
-  objectAnimator: {fileID: 1603208890}
-  objectRenderer: {fileID: 6868083581530891313}
-  cameraObjectSlot: {fileID: 479297745}
-  lookableobject: {fileID: 4629828494865283331}
-  objectSlot: {fileID: 543450652293926721}
-  material:
-  - {fileID: 2100000, guid: 9381a1839deafd3489f115222d46c636, type: 2}
-  - {fileID: 2100000, guid: 66908c9f3c36d2447b4e7ec53542e586, type: 2}
 --- !u!135 &561185685
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -34912,8 +34852,6 @@ GameObject:
   - component: {fileID: 1603208890}
   - component: {fileID: 561185685}
   - component: {fileID: 561185686}
-  - component: {fileID: 919132148288411132}
-  - component: {fileID: 561185684}
   m_Layer: 0
   m_Name: p_BookMockup
   m_TagString: Ground
@@ -34921,21 +34859,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &919132148288411132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148288411131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84cafb1786ae6b24e8731c5199ac15d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectAudioSource: {fileID: 561185686}
-  objectVFX: {fileID: 1999504977}
-  lookableObject: {fileID: 561185684}
 --- !u!1 &919132148876371536
 GameObject:
   m_ObjectHideFlags: 0
@@ -34948,6 +34871,7 @@ GameObject:
   - component: {fileID: 1839574080}
   - component: {fileID: 919132148876371539}
   - component: {fileID: 919132148876371540}
+  - component: {fileID: 919132148876371541}
   m_Layer: 3
   m_Name: p_Vase_MockUp
   m_TagString: Object
@@ -35064,6 +34988,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &919132148876371541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148876371536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cd0b009150f30d46af61b9607bd3567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerStateMachine: {fileID: 315981917}
+  _objectAnimator: {fileID: 1839574080}
+  _objectRenderer: {fileID: 8417361358811291295}
+  _objectAudioSource: {fileID: 919132148876371540}
+  _objectVisualEffect: {fileID: 817871253}
+  material:
+  - {fileID: 2100000, guid: 62243ff9fd2d35d4ca97e0e8c1e9c61f, type: 2}
+  - {fileID: 2100000, guid: 66908c9f3c36d2447b4e7ec53542e586, type: 2}
 --- !u!4 &1367194930720697911
 Transform:
   m_ObjectHideFlags: 0

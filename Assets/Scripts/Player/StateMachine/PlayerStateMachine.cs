@@ -11,7 +11,6 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] Camera playerCamera;
     [SerializeField] Animator playerAnimator;
 
-    public LayerMask layermask;
      RaycastHit hit;
      PlayerBase _currentState;
      PlayerStateFactory _states;
