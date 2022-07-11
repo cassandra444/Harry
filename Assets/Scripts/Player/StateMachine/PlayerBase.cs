@@ -1,9 +1,15 @@
 
 public abstract class PlayerBase 
 {
-    protected PlayerStateMachine _ctx;
-    protected PlayerStateFactory _factory;
-    public PlayerBase(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
+    private PlayerStateMachine _ctx;
+    private PlayerStateFactory _factory;
+    private PlayerBase _currentSubState;
+    private PlayerBase _currentSuperState;
+
+    protected PlayerStateMachine Ctx { get { return _ctx; } }
+    protected PlayerStateFactory Factory { get { return _factory; } }
+
+    public PlayerBase( PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
     {
         _ctx = currentContext;
         _factory = playerStateFactory;
@@ -14,12 +20,22 @@ public abstract class PlayerBase
     public abstract void CheckSwitchState();
     public abstract void InitializeSubState();
 
-    void UpdateStates() { }
+    public void UpdateStates() {
+        UpdateState();
+        if(_currentSubState != null)
+        {
+            _currentSubState.UpdateStates();
+        }
+    }
     public void SwitchState(PlayerBase newState) {
         ExitState();
         newState.EnterState();
         _ctx.CurrentState = newState;
     }
-    public void SetSuperState() { }
-    public void SetSubState() { }
+    public void SetSuperState(PlayerBase newSuperState) {
+        _currentSuperState = newSuperState;
+    }
+    public void SetSubState(PlayerBase newSubState) {
+        _currentSubState = newSubState;
+    }
 }

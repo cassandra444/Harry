@@ -5,19 +5,34 @@ using UnityEngine;
 public class PlayerPassiveState : PlayerBase
 {
     public PlayerPassiveState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
-    : base(currentContext, playerStateFactory) { }
+    : base(currentContext, playerStateFactory) 
+    {
+        InitializeSubState();
+    }
 
 
     public override void EnterState() { }
-    public override void UpdateState() {
+    public override void UpdateState() 
+    {
         CheckSwitchState();
     }
     public override void ExitState() { }
-    public override void InitializeSubState() { }
-    public override void CheckSwitchState() {
-        if (_ctx.PlayerInInteractingZone == true) 
+    public override void InitializeSubState() 
+    { 
+        if(Ctx.PlayerIsMoving == true)
         {
-            SwitchState(_factory.Interact());
+            SetSubState(Factory.Walk());
+        }else if (Ctx.PlayerIsMoving == false)
+        {
+            SetSubState(Factory.Idle());
+        }
+    }
+    public override void CheckSwitchState() 
+    {
+
+      if (Ctx.PlayerInInteractingZone == true) 
+        {
+            SwitchState(Factory.Interact());
         }
     }
 }

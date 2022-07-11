@@ -2,7 +2,7 @@
 public class PlayerStateFactory 
 {
     PlayerStateMachine _context;
-   public PlayerStateFactory(PlayerStateMachine currentContext)
+    public PlayerStateFactory(PlayerStateMachine currentContext)
     {
         _context = currentContext;
     }

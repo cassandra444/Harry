@@ -353,9 +353,9 @@ GameObject:
   - component: {fileID: 216051191}
   - component: {fileID: 216051190}
   - component: {fileID: 216051189}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -8232,6 +8232,12 @@ MonoBehaviour:
   playerAgent: {fileID: 315981916}
   playerCamera: {fileID: 559188009}
   playerAnimator: {fileID: 1061252942}
+  layermask:
+    serializedVersion: 2
+    m_Bits: 8
+  _acceleration: 2
+  _decceleration: 2
+  _velocity: 0
 --- !u!1 &392151278
 GameObject:
   m_ObjectHideFlags: 0
@@ -8388,7 +8394,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 9
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -9034,7 +9040,7 @@ GameObject:
   - component: {fileID: 817871251}
   - component: {fileID: 817871253}
   - component: {fileID: 817871252}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: VFX_MockUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19238,7 +19244,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27614
+  m_Name: pb_Mesh27630
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -34871,7 +34877,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3745622627623348111}
   - component: {fileID: 8417361358811291295}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34942,7 +34948,7 @@ GameObject:
   - component: {fileID: 1839574080}
   - component: {fileID: 919132148876371539}
   - component: {fileID: 919132148876371540}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: p_Vase_MockUp
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -34957,7 +34963,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148876371536}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.75
@@ -35190,7 +35196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 304206673604077727}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35586,7 +35592,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7037333645870933426}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Vase_Mockup
   m_TagString: Ground
   m_Icon: {fileID: 0}
