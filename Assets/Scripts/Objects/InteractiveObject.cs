@@ -9,6 +9,8 @@ public class InteractiveObject : MonoBehaviour
 
     [SerializeField] PlayerStateMachine _playerStateMachine;
     [SerializeField] private Animator _objectAnimator;
+    [SerializeField] private Animator _playerAnimator;
+    [SerializeField] public float _animTypeFloat = 0f;
     [SerializeField] private Renderer _objectRenderer;
     [SerializeField] private AudioSource _objectAudioSource;
     [SerializeField] private VisualEffect _objectVisualEffect;
@@ -37,6 +39,8 @@ public class InteractiveObject : MonoBehaviour
     private void PlayObject()
     {
         _objectAnimator.SetBool("AnimateObject", true);
+        _playerAnimator.SetFloat("Anim_Type", _animTypeFloat);
+
 
     }
 
@@ -58,6 +62,7 @@ public class InteractiveObject : MonoBehaviour
         if (playerInteract == true && _playerStateMachine.PlayerInInteractingZone == true)
         {
             PlayObject();
+           
         }
         else
         {

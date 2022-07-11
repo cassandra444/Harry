@@ -8199,6 +8199,7 @@ MonoBehaviour:
   playerAgent: {fileID: 315981916}
   playerCamera: {fileID: 559188009}
   playerAnimator: {fileID: 1061252942}
+  _anim_PlayerInteracting: 0
   _acceleration: 2
   _decceleration: 2
   _velocity: 0
@@ -9010,7 +9011,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 817871250}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -34779,7 +34780,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148288411131}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.98, y: 0.286, z: 0.46}
+  m_LocalPosition: {x: -0.317, y: 0.286, z: 0.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34797,7 +34798,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148876371536}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.199, y: 0.129, z: 0.57}
+  m_LocalPosition: {x: -4.261, y: 0.129, z: 0.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34877,6 +34878,8 @@ MonoBehaviour:
   cachePlane: {fileID: 1392414973}
   rotationSpeed: 1
   objectAnimator: {fileID: 1603208890}
+  _playerAnimator: {fileID: 1061252942}
+  _animTypeFloat: 1
   objectRenderer: {fileID: 6868083581530891313}
   cameraObjectSlot: {fileID: 479297745}
   lookableobject: {fileID: 4629828494865283331}
@@ -34905,7 +34908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!135 &919132148876371539
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -34917,7 +34920,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.75
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &919132148876371540
 AudioSource:
@@ -35029,6 +35032,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerStateMachine: {fileID: 315981917}
   _objectAnimator: {fileID: 1839574080}
+  _playerAnimator: {fileID: 1061252942}
+  _animTypeFloat: 0
   _objectRenderer: {fileID: 8417361358811291295}
   _objectAudioSource: {fileID: 919132148876371540}
   _objectVisualEffect: {fileID: 817871253}

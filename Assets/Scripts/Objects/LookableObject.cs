@@ -16,7 +16,9 @@ public class LookableObject : MonoBehaviour
     [SerializeField] private GameObject cachePlane;
 
     [SerializeField] private float rotationSpeed = 1f;
-    [SerializeField] private Animator objectAnimator;    
+    [SerializeField] private Animator objectAnimator;
+    [SerializeField] private Animator _playerAnimator;
+    [SerializeField] public float _animTypeFloat = 0f;
     [SerializeField] private Renderer objectRenderer;
     [SerializeField] private Transform cameraObjectSlot;
     [SerializeField] private Transform lookableobject;
@@ -62,12 +64,15 @@ public class LookableObject : MonoBehaviour
     private void PlayObject()
     {
         objectAnimator.SetBool("AnimateObject", true);
+        _playerAnimator.SetFloat("Anim_Type", _animTypeFloat);
+
         lookableobject.position = new Vector3(cameraObjectSlot.position.x, cameraObjectSlot.position.y, cameraObjectSlot.position.z);
         objectRenderer.sharedMaterial = material[0];
         objectPlayed = true;
         RotateOBject();
         playerAgent.speed = 0.01f;
         cachePlane.SetActive(true);
+
 
     }
 
@@ -94,6 +99,7 @@ public class LookableObject : MonoBehaviour
        if (playerInteract == true && _playerStateMachine.PlayerInInteractingZone == true)
         {
             PlayObject();
+            
 
 
         }
@@ -106,6 +112,7 @@ public class LookableObject : MonoBehaviour
         if (playerInteract == true && _playerStateMachine.PlayerInInteractingZone == true && Input.GetMouseButton(1))
         {           
             StopObject();
+
         }
         
     }

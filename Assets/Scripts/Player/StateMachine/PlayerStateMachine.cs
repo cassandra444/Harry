@@ -19,6 +19,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     //Animations
     int _velocityHash;
+    public bool _anim_PlayerInteracting;
     public float _acceleration = 0.9f;
     public float _decceleration = 0.9f;
     public float _velocity = 0.0f;
@@ -38,6 +39,7 @@ public class PlayerStateMachine : MonoBehaviour
     public float Acceleration { get { return _acceleration; } set { _acceleration = value; } }
     public float Deceleration { get { return _decceleration; } set { _decceleration = value; } }
 
+    public bool AnimPlayerInteracting { get { return _anim_PlayerInteracting; } set { _anim_PlayerInteracting = value; } }
 
 
     private void Awake()
@@ -102,6 +104,8 @@ public class PlayerStateMachine : MonoBehaviour
             else _playerIsMoving = false;
         }
         else _playerIsMoving = false;
+
+        
       
     }
 

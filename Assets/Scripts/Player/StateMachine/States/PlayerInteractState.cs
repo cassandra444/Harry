@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class PlayerInteractState : PlayerBase
 {
+    
     public PlayerInteractState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
     : base(currentContext, playerStateFactory) 
     {
         InitializeSubState();
+        
     }
 
     public override void EnterState() 
     {
         PlayerInteract();
+        
     }
     public override void UpdateState() 
     {
@@ -41,5 +44,6 @@ public class PlayerInteractState : PlayerBase
     public void PlayerInteract()
     {
         //Debug.Log("Player is interacting");
+        Ctx.PlayerAnimator.SetBool("Anim_PlayerInteracting", true);
     }
 }

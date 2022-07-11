@@ -11,7 +11,9 @@ public class PlayerPassiveState : PlayerBase
     }
 
 
-    public override void EnterState() { }
+    public override void EnterState() {
+        Ctx.PlayerAnimator.SetBool("Anim_PlayerInteracting", false);
+    }
     public override void UpdateState() 
     {
         CheckSwitchState();
@@ -33,6 +35,7 @@ public class PlayerPassiveState : PlayerBase
       if (Ctx.PlayerInInteractingZone == true) 
         {
             SwitchState(Factory.Interact());
+            
         }
     }
 }
