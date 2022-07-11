@@ -7,23 +7,23 @@ using UnityEngine.AI;
 
 public class LookableObject : MonoBehaviour
 {   
-    private bool playerInRange;
     private bool playerInteract;
     private bool mouseEnter;
     private bool objectPlayed;
-    public bool GoFeedback;
 
+    [SerializeField] PlayerStateMachine _playerStateMachine;
     [SerializeField] private NavMeshAgent playerAgent;
     [SerializeField] private GameObject cachePlane;
 
     [SerializeField] private float rotationSpeed = 1f;
-    [SerializeField] private Animator objectAnimator;
-    
+    [SerializeField] private Animator objectAnimator;    
     [SerializeField] private Renderer objectRenderer;
     [SerializeField] private Transform cameraObjectSlot;
     [SerializeField] private Transform lookableobject;
     [SerializeField] private Transform objectSlot;
     public Material[] material;
+    [SerializeField] private AudioSource _objectAudioSource;
+    [SerializeField] private VisualEffect _objectVisualEffect;
 
     private void Start()
     {
@@ -33,21 +33,7 @@ public class LookableObject : MonoBehaviour
     }
 
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = true;
-        }
-    }
-
-     public void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {          
-            playerInRange = false;
-        }
-    }
+  
 
     private void OnMouseEnter()
     {
@@ -75,7 +61,6 @@ public class LookableObject : MonoBehaviour
 
     private void PlayObject()
     {
-        GoFeedback = true;
         objectAnimator.SetBool("AnimateObject", true);
         lookableobject.position = new Vector3(cameraObjectSlot.position.x, cameraObjectSlot.position.y, cameraObjectSlot.position.z);
         objectRenderer.sharedMaterial = material[0];
@@ -88,7 +73,6 @@ public class LookableObject : MonoBehaviour
 
     private void StopObject ()
     {
-        GoFeedback = false;
         objectAnimator.SetBool("AnimateObject", false);
         objectPlayed = false;
         playerInteract = false;
@@ -96,8 +80,8 @@ public class LookableObject : MonoBehaviour
         lookableobject.position = new Vector3(objectSlot.position.x, objectSlot.position.y, objectSlot.position.z);
         playerAgent.speed = 1.5f;
         cachePlane.SetActive(false);
+      
     }
-    
 
     void Update()
     {
@@ -107,15 +91,22 @@ public class LookableObject : MonoBehaviour
             playerInteract = true;
         }
        
-       if (playerInteract == true && playerInRange == true)
+       if (playerInteract == true && _playerStateMachine.PlayerInInteractingZone == true)
         {
             PlayObject();
+
+
+        }
+        else
+        {
+            _objectAudioSource.Play();
+            _objectVisualEffect.Play();
         }
 
-        if (playerInteract == true && playerInRange == true && Input.GetMouseButton(1))
-        {
-           
-            StopObject();      
+        if (playerInteract == true && _playerStateMachine.PlayerInInteractingZone == true && Input.GetMouseButton(1))
+        {           
+            StopObject();
         }
+        
     }
 }
