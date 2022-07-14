@@ -1,26 +1,42 @@
 
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
 public class InteractiveObject : MonoBehaviour
 {
+
     private bool playerInteract;
     private bool mouseEnter;
+    private bool _playerInInteractingZone;
 
-    [SerializeField] PlayerStateMachine _playerStateMachine;
+    [Header("References")]
     [SerializeField] private Animator _objectAnimator;
-    [SerializeField] private Animator _playerAnimator;
-    [SerializeField] public float _animTypeFloat = 0f;
     [SerializeField] private Renderer _objectRenderer;
+    [SerializeField] private Animator _playerAnimator;
+
+    [Header("Feedbacks")]
+    [SerializeField] private float _interactionDuration = 3f;    
     [SerializeField] private AudioSource _objectAudioSource;
     [SerializeField] private VisualEffect _objectVisualEffect;
-
     public Material[] material;
 
     private void Start()
     {
         _objectRenderer.enabled = true;
         _objectRenderer.sharedMaterial = material[0];
+        playerInteract = false;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player")) _playerInInteractingZone = true;
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player")) _playerInInteractingZone = false;
     }
 
     private void OnMouseEnter()
@@ -35,40 +51,32 @@ public class InteractiveObject : MonoBehaviour
         mouseEnter = false;
     }
 
-    
     private void PlayObject()
     {
         _objectAnimator.SetBool("AnimateObject", true);
-        _playerAnimator.SetFloat("Anim_Type", _animTypeFloat);
-
-
+        _playerAnimator.SetBool("Anim_PlayerInteracting", true);
+        StartCoroutine("PlayerStopInteract");
     }
 
     private void StopObject ()
     {
         _objectAnimator.SetBool("AnimateObject", false);
+        _playerAnimator.SetBool("Anim_PlayerInteracting", false);
         _objectAudioSource.Play();
         _objectVisualEffect.Play();
+    }
 
+    private IEnumerator PlayerStopInteract()
+    {
+        yield return new WaitForSeconds(_interactionDuration);
+        playerInteract = false;
     }
 
     void Update()
     {
-        if (mouseEnter == true && Input.GetMouseButton(0))
-        {
-            playerInteract = true;
-        }
-
-        if (playerInteract == true && _playerStateMachine.PlayerInInteractingZone == true)
-        {
-            PlayObject();
-           
-        }
-        else
-        {
-            StopObject();
-        }
-
-        
+        if (mouseEnter == true && Input.GetMouseButton(0)) playerInteract = true;
+       
+        if (playerInteract == true && _playerInInteractingZone == true) PlayObject();
+        else StopObject();      
     }
 }

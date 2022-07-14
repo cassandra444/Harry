@@ -44,6 +44,6 @@ public class PlayerInteractState : PlayerBase
     public void PlayerInteract()
     {
         //Debug.Log("Player is interacting");
-        Ctx.PlayerAnimator.SetBool("Anim_PlayerInteracting", true);
+        //Ctx.PlayerAnimator.SetBool("Anim_PlayerInteracting", true);
     }
 }

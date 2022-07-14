@@ -8262,9 +8262,8 @@ MonoBehaviour:
   playerAgent: {fileID: 315981916}
   playerCamera: {fileID: 559188009}
   playerAnimator: {fileID: 1061252942}
-  _anim_PlayerInteracting: 0
-  _acceleration: 2
-  _decceleration: 2
+  _acceleration: 3
+  _decceleration: 3
   _velocity: 0
 --- !u!1 &392151278
 GameObject:
@@ -35118,14 +35117,13 @@ MonoBehaviour:
   _playerStateMachine: {fileID: 315981917}
   playerAgent: {fileID: 315981916}
   cachePlane: {fileID: 1392414973}
-  rotationSpeed: 2
   objectAnimator: {fileID: 1603208890}
   _playerAnimator: {fileID: 1061252942}
-  _animTypeFloat: 1
   objectRenderer: {fileID: 6868083581530891313}
   cameraObjectSlot: {fileID: 479297745}
   lookableobject: {fileID: 4629828494865283331}
   objectSlot: {fileID: 543450652293926721}
+  _interactionDuration: 1
   material:
   - {fileID: 2100000, guid: 9381a1839deafd3489f115222d46c636, type: 2}
   - {fileID: 2100000, guid: 66908c9f3c36d2447b4e7ec53542e586, type: 2}
@@ -35274,9 +35272,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerStateMachine: {fileID: 315981917}
   _objectAnimator: {fileID: 1839574080}
-  _playerAnimator: {fileID: 1061252942}
-  _animTypeFloat: 0
   _objectRenderer: {fileID: 8417361358811291295}
+  _playerAnimator: {fileID: 1061252942}
+  _interactionDuration: 3
   _objectAudioSource: {fileID: 919132148876371540}
   _objectVisualEffect: {fileID: 817871253}
   material:

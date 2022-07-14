@@ -12,7 +12,7 @@ public class PlayerPassiveState : PlayerBase
 
 
     public override void EnterState() {
-        Ctx.PlayerAnimator.SetBool("Anim_PlayerInteracting", false);
+        //Ctx.PlayerAnimator.SetBool("Anim_PlayerInteracting", false);
     }
     public override void UpdateState() 
     {
