@@ -54,7 +54,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Object"))
+        if (other.CompareTag("Object")))
         {
             _playerInInteractingZone = true;
         }
