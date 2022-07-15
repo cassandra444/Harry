@@ -10,11 +10,12 @@ public class InteractiveObject : MonoBehaviour
     private bool playerInteract;
     private bool mouseEnter;
     private bool _playerInInteractingZone;
+    public bool _animatorBool;
 
     [Header("References")]
     [SerializeField] private Animator _objectAnimator;
     [SerializeField] private Renderer _objectRenderer;
-    [SerializeField] private Animator _playerAnimator;
+    [SerializeField] public Animator _playerAnimator;
 
     [Header("Feedbacks")]
     [SerializeField] private float _interactionDuration = 3f;    
@@ -52,7 +53,7 @@ public class InteractiveObject : MonoBehaviour
     }
 
     private void PlayObject()
-    {
+    {     
         _objectAnimator.SetBool("AnimateObject", true);
         _playerAnimator.SetBool("Anim_PlayerInteracting", true);
         StartCoroutine("PlayerStopInteract");
@@ -74,9 +75,15 @@ public class InteractiveObject : MonoBehaviour
 
     void Update()
     {
-        if (mouseEnter == true && Input.GetMouseButton(0)) playerInteract = true;
-       
-        if (playerInteract == true && _playerInInteractingZone == true) PlayObject();
+        if (mouseEnter == true && Input.GetMouseButton(0))
+        {
+            playerInteract = true;
+        }
+
+        if (playerInteract == true && _playerInInteractingZone == true)
+        {
+            PlayObject();        
+        }
         else StopObject();      
     }
 }

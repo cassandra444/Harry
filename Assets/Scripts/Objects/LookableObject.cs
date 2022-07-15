@@ -17,7 +17,9 @@ public class LookableObject : MonoBehaviour
     [SerializeField] private NavMeshAgent playerAgent;
     [SerializeField] private GameObject cachePlane;
     [SerializeField] private Animator objectAnimator;
-    [SerializeField] private Animator _playerAnimator;
+
+    [SerializeField] public Animator _playerAnimator;
+
     [SerializeField] private Renderer objectRenderer;
     [SerializeField] private Transform cameraObjectSlot;
     [SerializeField] private Transform lookableobject;
@@ -74,7 +76,7 @@ public class LookableObject : MonoBehaviour
     private void PlayObject()
     {
         objectAnimator.SetBool("AnimateObject", true);
-        _playerAnimator.SetBool("Anim_PlayerInteracting", true);
+        _playerAnimator.SetBool("Anim_PlayerLook", true);
         lookableobject.position = new Vector3(cameraObjectSlot.position.x, cameraObjectSlot.position.y, cameraObjectSlot.position.z);
         objectRenderer.sharedMaterial = material[0];
         objectPlayed = true;
@@ -86,10 +88,11 @@ public class LookableObject : MonoBehaviour
     private void StopObject ()
     {
         objectAnimator.SetBool("AnimateObject", false);
-        _playerAnimator.SetBool("Anim_PlayerInteracting", false);
+        _playerAnimator.SetBool("Anim_PlayerLook", false);
         objectPlayed = false;
         playerInteract = false;
         lookableobject.position = new Vector3(objectSlot.position.x, objectSlot.position.y, objectSlot.position.z);
+        lookableobject.rotation = objectSlot.rotation;
         playerAgent.speed = 1.5f;
         cachePlane.SetActive(false);
         StartCoroutine("PlayerStopInteract");
@@ -104,10 +107,12 @@ public class LookableObject : MonoBehaviour
     void Update()
     {
         if (mouseEnter == true && Input.GetMouseButton(0)) playerInteract = true;
-       
-       
-       if (playerInteract == true && _playerInInteractingZone == true) PlayObject();
-       else
+
+        if (playerInteract == true && _playerInInteractingZone == true)
+        {
+            PlayObject();
+        }
+        else
         {
             _objectAudioSource.Play();
             _objectVisualEffect.Play();
