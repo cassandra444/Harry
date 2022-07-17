@@ -5,29 +5,38 @@ using UnityEngine.VFX;
 
 public class DoorManager : MonoBehaviour
 {
+    #region Variables
     private bool playerInteract;
     private bool mouseEnter;
     private bool _playerInInteractingZone;
     public bool _animatorBool;
+    private Animator _objectAnimator;
+    private Renderer _objectRenderer;
+    private AudioSource _objectAudioSource;
 
     [Header("References")]
-    [SerializeField] private Animator _objectAnimator;
-    [SerializeField] private Renderer _objectRenderer;
+    [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _object;
     [SerializeField] public Animator _playerAnimator;
     [SerializeField] private FindableObject _findableObject;
 
     [Header("Feedbacks")]
     [SerializeField] private float _interactionDuration = 3f;
-    [SerializeField] private AudioSource _objectAudioSource;
     public Material[] material;
+    #endregion
 
     private void Start()
     {
+        _objectAnimator = GetComponent<Animator>();
+        _objectRenderer = GetComponentInChildren<Renderer>();
+        _objectAudioSource = GetComponent<AudioSource>();
+
         _objectRenderer.enabled = true;
         _objectRenderer.sharedMaterial = material[0];
         playerInteract = false;
     }
 
+    #region Checkers
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) _playerInInteractingZone = true;
@@ -49,18 +58,19 @@ public class DoorManager : MonoBehaviour
         _objectRenderer.sharedMaterial = material[0];
         mouseEnter = false;
     }
+    #endregion
 
+
+    #region Object Action
     private void PlayCloseDoor()
     {      
-       // _playerAnimator.SetBool("Anim_PlayerInteracting", true);
+        _playerAnimator.SetBool("Anim_PlayerInteracting", true);
         StartCoroutine("PlayerStopInteract");
     }
 
     private void PlayOpenDoor()
     {
-        Debug.Log("player in with shoes ! ");
         _objectAnimator.SetBool("AnimateObject", true);
-        _playerAnimator.SetBool("Anim_PlayerInteracting", true);
         StartCoroutine("PlayerStopInteract");
         _objectAudioSource.Play();
     }
@@ -76,27 +86,16 @@ public class DoorManager : MonoBehaviour
         yield return new WaitForSeconds(_interactionDuration);
         playerInteract = false;
     }
+    #endregion
+
 
     void Update()
-    {
-        Debug.Log("PLayer found object :" + _findableObject._objectFinded);
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            _objectAnimator.SetBool("AnimateObject", true);
-        }
-        if (mouseEnter == true && Input.GetMouseButton(0))
-        {
-            playerInteract = true;
-        }
+    {      
+        if (mouseEnter == true && Input.GetMouseButton(0)) playerInteract = true;
 
-        if (playerInteract == true && _playerInInteractingZone == true && _findableObject._objectFinded == false)
-        {
-            PlayCloseDoor();
-        }
-        if(playerInteract == true && _playerInInteractingZone == true && _findableObject._objectFinded == true)
-        {
-            PlayOpenDoor();
-        }
+        if (playerInteract == true && _playerInInteractingZone == true && _findableObject._objectFinded == false) PlayCloseDoor();
+
+        if(playerInteract == true && _playerInInteractingZone == true && _findableObject._objectFinded == true) PlayOpenDoor();
         else StopObject();
     }
 }

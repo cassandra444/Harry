@@ -6,48 +6,56 @@ using UnityEngine.VFX;
 using UnityEngine.AI;
 
 public class LookableObject : MonoBehaviour
-{   
+{
+    #region Variables
     private bool playerInteract;
     private bool mouseEnter;
     private bool objectPlayed;
     private float rotationSpeed = 4f;
     private bool _playerInInteractingZone;
+    private NavMeshAgent _playerAgent;
+    private Animator _objectAnimator; 
+    private Transform _objectSlot;
+    private AudioSource _objectAudioSource;
+    private VisualEffect _objectVisualEffect;
 
     [Header("References")]
-    [SerializeField] private NavMeshAgent playerAgent;
-    [SerializeField] private GameObject cachePlane;
-    [SerializeField] private Animator objectAnimator;
-
-    [SerializeField] public Animator _playerAnimator;
-
-    [SerializeField] private Renderer objectRenderer;
-    [SerializeField] private Transform cameraObjectSlot;
-    [SerializeField] private Transform lookableobject;
-    [SerializeField] private Transform objectSlot;
-
+    [SerializeField] GameObject _player;
+    [SerializeField] GameObject _object;
+    [SerializeField] private GameObject _cachePlane;
+    [SerializeField] public Animator _playerAnimator;  
+    [SerializeField] private Transform _cameraObjectSlot;
+    [SerializeField] private Transform _lookableobject;
+   
     [Header("Feedbacks")]
     [SerializeField] private float _interactionDuration = 3f;
-    public Material[] material;
-    [SerializeField] private AudioSource _objectAudioSource;
-    [SerializeField] private VisualEffect _objectVisualEffect;
+    public Material[] _materialArray;
+    [SerializeField] private Renderer _objectRenderer;
+    #endregion
 
     private void Start()
     {
-        objectRenderer.enabled = true;
-        objectRenderer.sharedMaterial = material[0];
-        cachePlane.SetActive(false);
+        _playerAgent = _player.GetComponent<NavMeshAgent>();
+        _objectAnimator = GetComponent<Animator>();
+        _objectSlot = _object.transform;
+        _objectAudioSource = GetComponent<AudioSource>();
+        _objectVisualEffect = GetComponentInChildren<VisualEffect>();
+
+        _objectRenderer.enabled = true;
+        _objectRenderer.sharedMaterial = _materialArray[0];
+        _cachePlane.SetActive(false);
     }
 
-
+    #region Checker
     private void OnMouseEnter()
     {
-        objectRenderer.sharedMaterial = material[1];
+        _objectRenderer.sharedMaterial = _materialArray[1];
         mouseEnter = true;
     }
 
     private void OnMouseExit()
     {
-        objectRenderer.sharedMaterial = material[0];
+        _objectRenderer.sharedMaterial = _materialArray[0];
         mouseEnter = false;
     }
 
@@ -61,40 +69,42 @@ public class LookableObject : MonoBehaviour
         if (other.CompareTag("Player")) _playerInInteractingZone = false;
         
     }
+    #endregion
 
+    #region Object Action
     void RotateOBject()
     {
         if (objectPlayed == true)
         {
             float XaxisRotation = Input.GetAxis("Mouse X") * rotationSpeed;
             float YaxisRotation = Input.GetAxis("Mouse Y") * rotationSpeed;
-            lookableobject.Rotate(Vector3.down, XaxisRotation);
-            lookableobject.Rotate(Vector3.right, YaxisRotation);
+            _lookableobject.Rotate(Vector3.down, XaxisRotation);
+            _lookableobject.Rotate(Vector3.right, YaxisRotation);
         }
     }
 
     private void PlayObject()
     {
-        objectAnimator.SetBool("AnimateObject", true);
+        _objectAnimator.SetBool("AnimateObject", true);
         _playerAnimator.SetBool("Anim_PlayerLook", true);
-        lookableobject.position = new Vector3(cameraObjectSlot.position.x, cameraObjectSlot.position.y, cameraObjectSlot.position.z);
-        objectRenderer.sharedMaterial = material[0];
+        _lookableobject.position = new Vector3(_cameraObjectSlot.position.x, _cameraObjectSlot.position.y, _cameraObjectSlot.position.z);
+        _objectRenderer.sharedMaterial = _materialArray[0];
         objectPlayed = true;
         RotateOBject();
-        playerAgent.speed = 0.01f;
-        cachePlane.SetActive(true);
+        _playerAgent.speed = 0.01f;
+        _cachePlane.SetActive(true);
     }
 
     private void StopObject ()
     {
-        objectAnimator.SetBool("AnimateObject", false);
+        _objectAnimator.SetBool("AnimateObject", false);
         _playerAnimator.SetBool("Anim_PlayerLook", false);
         objectPlayed = false;
         playerInteract = false;
-        lookableobject.position = new Vector3(objectSlot.position.x, objectSlot.position.y, objectSlot.position.z);
-        lookableobject.rotation = objectSlot.rotation;
-        playerAgent.speed = 1.5f;
-        cachePlane.SetActive(false);
+        _lookableobject.position = new Vector3(_objectSlot.position.x, _objectSlot.position.y, _objectSlot.position.z);
+        _lookableobject.rotation = _objectSlot.rotation;
+        _playerAgent.speed = 1.5f;
+        _cachePlane.SetActive(false);
         StartCoroutine("PlayerStopInteract");
     }
 
@@ -103,15 +113,13 @@ public class LookableObject : MonoBehaviour
         yield return new WaitForSeconds(_interactionDuration);
         playerInteract = false;
     }
+    #endregion
 
     void Update()
     {
         if (mouseEnter == true && Input.GetMouseButton(0)) playerInteract = true;
 
-        if (playerInteract == true && _playerInInteractingZone == true)
-        {
-            PlayObject();
-        }
+        if (playerInteract == true && _playerInInteractingZone == true) PlayObject();
         else
         {
             _objectAudioSource.Play();

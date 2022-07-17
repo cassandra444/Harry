@@ -39,9 +39,6 @@ public class PlayerStateMachine : MonoBehaviour
     public float Acceleration { get { return _acceleration; } set { _acceleration = value; } }
     public float Deceleration { get { return _decceleration; } set { _decceleration = value; } }
 
-   // public bool AnimPlayerInteracting { get { return _anim_PlayerInteracting; } set { _anim_PlayerInteracting = value; } }
-
-
     private void Awake()
     {
         _states = new PlayerStateFactory(this);
@@ -99,7 +96,7 @@ public class PlayerStateMachine : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << 3))
             {
-                _playerIsMoving = true;              
+                _playerIsMoving = true;
             }
             else _playerIsMoving = false;
         }

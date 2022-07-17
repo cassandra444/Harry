@@ -52,7 +52,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8595539873458743812, guid: 2209708b7b4e2374e81b06f2e24a6afe, type: 3}
+  - {fileID: 2100000, guid: 3844e9027d4405543b018b045f6f6683, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -471,20 +471,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f8884f628613f4ea0b8cbbeb34f477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAgent: {fileID: 0}
-  cachePlane: {fileID: 0}
-  objectAnimator: {fileID: 5926179212544613162}
+  _player: {fileID: 0}
+  _object: {fileID: 0}
+  _cachePlane: {fileID: 0}
   _playerAnimator: {fileID: 0}
-  objectRenderer: {fileID: 1368306937834778074}
-  cameraObjectSlot: {fileID: 0}
-  lookableobject: {fileID: 4964530384579906551}
-  objectSlot: {fileID: 5926179212544613174}
+  _cameraObjectSlot: {fileID: 0}
+  _lookableobject: {fileID: 0}
   _interactionDuration: 3
-  material:
-  - {fileID: 2100000, guid: 3844e9027d4405543b018b045f6f6683, type: 2}
-  - {fileID: 2100000, guid: 66908c9f3c36d2447b4e7ec53542e586, type: 2}
-  _objectAudioSource: {fileID: 5926179212544613172}
-  _objectVisualEffect: {fileID: 4187307960963460342}
+  _materialArray: []
 --- !u!1 &6552121499669756606
 GameObject:
   m_ObjectHideFlags: 0

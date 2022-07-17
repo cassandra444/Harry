@@ -6,30 +6,37 @@ using UnityEngine.VFX;
 
 public class InteractiveObject : MonoBehaviour
 {
-
-    private bool playerInteract;
-    private bool mouseEnter;
+    #region Variables
+    private bool _playerInteract;
+    private bool _mouseEnter;
     private bool _playerInInteractingZone;
-    public bool _animatorBool;
+    private Animator _objectAnimator;
+    private Renderer _objectRenderer;
+    private AudioSource _objectAudioSource;
+    private VisualEffect _objectVisualEffect;
 
     [Header("References")]
-    [SerializeField] private Animator _objectAnimator;
-    [SerializeField] private Renderer _objectRenderer;
+    [SerializeField] private GameObject _object;   
     [SerializeField] public Animator _playerAnimator;
 
     [Header("Feedbacks")]
-    [SerializeField] private float _interactionDuration = 3f;    
-    [SerializeField] private AudioSource _objectAudioSource;
-    [SerializeField] private VisualEffect _objectVisualEffect;
-    public Material[] material;
+    [SerializeField] private float _interactionDuration = 3f;      
+    [SerializeField] public Material[] _materialsArray;
+    #endregion
 
     private void Start()
     {
+        _objectAnimator = GetComponent<Animator>();
+        _objectAudioSource = GetComponent<AudioSource>();
+        _objectRenderer = GetComponentInChildren<Renderer>();
+        _objectVisualEffect = GetComponentInChildren<VisualEffect>();
+
         _objectRenderer.enabled = true;
-        _objectRenderer.sharedMaterial = material[0];
-        playerInteract = false;
+        _objectRenderer.sharedMaterial = _materialsArray[0];
+        _playerInteract = false;       
     }
 
+    #region Checkers
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) _playerInInteractingZone = true;
@@ -42,16 +49,18 @@ public class InteractiveObject : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        _objectRenderer.sharedMaterial = material[1];
-        mouseEnter = true;
+        _objectRenderer.sharedMaterial = _materialsArray[1];
+        _mouseEnter = true;
     }
 
     private void OnMouseExit()
     {
-        _objectRenderer.sharedMaterial = material[0];
-        mouseEnter = false;
+        _objectRenderer.sharedMaterial = _materialsArray[0];
+        _mouseEnter = false;
     }
+    #endregion
 
+    #region Object Action
     private void PlayObject()
     {     
         _objectAnimator.SetBool("AnimateObject", true);
@@ -70,20 +79,15 @@ public class InteractiveObject : MonoBehaviour
     private IEnumerator PlayerStopInteract()
     {
         yield return new WaitForSeconds(_interactionDuration);
-        playerInteract = false;
+        _playerInteract = false;
     }
+    #endregion
 
     void Update()
     {
-        if (mouseEnter == true && Input.GetMouseButton(0))
-        {
-            playerInteract = true;
-        }
+        if (_mouseEnter == true && Input.GetMouseButton(0)) _playerInteract = true;
 
-        if (playerInteract == true && _playerInInteractingZone == true)
-        {
-            PlayObject();        
-        }
+        if (_playerInteract == true && _playerInInteractingZone == true) PlayObject();
         else StopObject();      
     }
 }
