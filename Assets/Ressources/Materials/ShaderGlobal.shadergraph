@@ -651,10 +651,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -500.0,
-            "y": 154.3999481201172,
-            "width": 97.60006713867188,
-            "height": 33.60005187988281
+            "x": -332.7999572753906,
+            "y": 137.60000610351563,
+            "width": 97.59999084472656,
+            "height": 33.59999084472656
         }
     },
     "m_Slots": [
@@ -1193,7 +1193,7 @@
     "m_DefaultRefNameVersion": 1,
     "m_RefNameGeneratedByDisplayName": "BaseColor",
     "m_DefaultReferenceName": "_BaseColor",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_BaseColor",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
@@ -1898,10 +1898,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -383.1999206542969,
-            "y": -15.200000762939454,
-            "width": 130.39991760253907,
-            "height": 117.59996032714844
+            "x": -332.7999572753906,
+            "y": -16.00002098083496,
+            "width": 130.40000915527345,
+            "height": 117.5999984741211
         }
     },
     "m_Slots": [
@@ -3606,7 +3606,7 @@
     ],
     "synonyms": [],
     "m_Precision": 0,
-    "m_PreviewExpanded": true,
+    "m_PreviewExpanded": false,
     "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []

@@ -21,8 +21,9 @@ public class MouseUI : MonoBehaviour
     {
         if(Input.GetMouseButton(0))
         {
-            _cursorAnimator.SetBool("CursorScaleDown", true);
-        }
+            _mouseUI.transform.localScale = new Vector3(0.25f, _mouseUI.transform.localScale.y, 0.25f);
+            _mouseUI.transform.localScale = new Vector3(0.25f, _mouseUI.transform.localScale.y, 0.25f);
+        }else _mouseUI.transform.localScale = new Vector3(1f, _mouseUI.transform.localScale.y, 1f);
     }
 
    
@@ -31,8 +32,7 @@ public class MouseUI : MonoBehaviour
     {
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit _hit;
-        _cursorAnimator.SetBool("CursorScaleDown", false);
-
+ 
         if (Physics.Raycast(ray, out _hit, 500f,  clicMask))
         {
             if (_hit.collider.tag != "Object")

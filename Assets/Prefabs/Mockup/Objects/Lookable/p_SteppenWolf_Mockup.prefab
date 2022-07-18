@@ -186,7 +186,6 @@ GameObject:
   - component: {fileID: 7116290744563398024}
   - component: {fileID: 7116290744563398025}
   - component: {fileID: 7116290744563398030}
-  - component: {fileID: 7116290744563398031}
   m_Layer: 3
   m_Name: p_SteppenWolf_Mockup
   m_TagString: Object
@@ -353,33 +352,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f8884f628613f4ea0b8cbbeb34f477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAgent: {fileID: 0}
-  cachePlane: {fileID: 0}
-  objectAnimator: {fileID: 7116290744563398027}
+  _player: {fileID: 0}
+  _object: {fileID: 0}
+  _cachePlane: {fileID: 0}
   _playerAnimator: {fileID: 0}
-  objectRenderer: {fileID: 1932946821705420099}
-  cameraObjectSlot: {fileID: 0}
-  lookableobject: {fileID: 6621691794155048446}
-  objectSlot: {fileID: 7604877824988131126}
+  _cameraObjectSlot: {fileID: 0}
+  _lookableobject: {fileID: 0}
   _interactionDuration: 3
-  material:
-  - {fileID: 2100000, guid: 324d04fe376cf9a4ebf2a37cb77df9aa, type: 2}
-  - {fileID: 2100000, guid: 66908c9f3c36d2447b4e7ec53542e586, type: 2}
-  _objectAudioSource: {fileID: 7116290744563398025}
-  _objectVisualEffect: {fileID: 3120925246424718586}
---- !u!65 &7116290744563398031
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7116290744563398028}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.33, y: 0.22439024, z: 0.047021434}
-  m_Center: {x: 0, y: -0.0014633983, z: 0.00936427}
+  _materialArray: []
+  _objectRenderer: {fileID: 0}
 --- !u!1 &7318119491816585913
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,7 +523,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6621691794155048446}
-  - component: {fileID: 6621691794155048441}
   m_Layer: 3
   m_Name: Book_Openable
   m_TagString: Untagged
@@ -566,19 +546,6 @@ Transform:
   m_Father: {fileID: 7604877824988131126}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6621691794155048441
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8207848819538212688}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.0032999997, y: 0.00067477924, z: 0.0020537334}
-  m_Center: {x: -1.2166636e-21, y: -0.00022313245, z: -0.000028791426}
 --- !u!1 &9044228653650055880
 GameObject:
   m_ObjectHideFlags: 0
