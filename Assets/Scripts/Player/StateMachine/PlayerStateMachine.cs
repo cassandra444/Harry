@@ -10,6 +10,7 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] NavMeshAgent playerAgent;
     [SerializeField] Camera playerCamera;
     [SerializeField] Animator playerAnimator;
+    public LayerMask _walkMask;
 
      RaycastHit hit;
      PlayerBase _currentState;
@@ -94,7 +95,7 @@ public class PlayerStateMachine : MonoBehaviour
 
             Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << 3))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, _walkMask))
             {
                 _playerIsMoving = true;
             }

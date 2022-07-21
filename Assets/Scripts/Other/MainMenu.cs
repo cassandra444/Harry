@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    [Header("Play Button")]
+    [Header("Global")]
     [SerializeField] private AudioSource _OnButtonSound;
 
     [Header("Play Button")]
@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
     public Sprite unselectPlayImage;
     public Sprite selectPlayImage;
 
-    [Header("Play BUtton")]
+    [Header("Quit Button")]
     public Image quitImage;
     public Sprite unselectQuitImage;
     public Sprite selectQuitImage;
