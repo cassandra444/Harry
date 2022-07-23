@@ -18,10 +18,15 @@ public class InteractiveObject : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject _object;   
     [SerializeField] public Animator _playerAnimator;
+    [SerializeField] private PauseMenu _pauseMenu;
 
     [Header("Feedbacks")]
     [SerializeField] private float _interactionDuration = 3f;      
     [SerializeField] public Material[] _materialsArray;
+    public Texture2D _cursorTextureEnter;
+    public Texture2D _cursorTextureExit;
+    public CursorMode _cursorMode = CursorMode.Auto;
+    public Vector2 _hotSpot = Vector2.zero;
     #endregion
 
     private void Start()
@@ -49,14 +54,21 @@ public class InteractiveObject : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        _objectRenderer.sharedMaterial = _materialsArray[1];
-        _mouseEnter = true;
+        if(_pauseMenu._mouseOnUi == false)
+        {
+            _objectRenderer.sharedMaterial = _materialsArray[1];
+            _mouseEnter = true;
+            Cursor.SetCursor(_cursorTextureEnter, _hotSpot, _cursorMode);
+        }
+       
     }
 
     private void OnMouseExit()
     {
+        if(_pauseMenu._mouseOnUi == false)
         _objectRenderer.sharedMaterial = _materialsArray[0];
         _mouseEnter = false;
+        Cursor.SetCursor(_cursorTextureExit, _hotSpot, _cursorMode);
     }
     #endregion
 

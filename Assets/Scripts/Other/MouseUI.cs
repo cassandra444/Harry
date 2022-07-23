@@ -9,6 +9,7 @@ public class MouseUI : MonoBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private GameObject _mouseUI;
     [SerializeField] private Animator _cursorAnimator;
+    [SerializeField] private PauseMenu _pauseMenu;
 
     private Vector3 _cursorPosition;
 
@@ -35,7 +36,7 @@ public class MouseUI : MonoBehaviour
  
         if (Physics.Raycast(ray, out _hit, 500f,  clicMask))
         {
-            if (_hit.collider.tag != "Object")
+            if (_hit.collider.tag != "Object" && _pauseMenu._mouseOnUi == false)
             {
                 _mouseUI.SetActive(true);
                 _mouseUI.transform.position = _hit.point;

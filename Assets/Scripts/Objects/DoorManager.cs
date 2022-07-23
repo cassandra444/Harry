@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using UnityEngine.UI;
 
 public class DoorManager : MonoBehaviour
 {
@@ -19,10 +20,23 @@ public class DoorManager : MonoBehaviour
     [SerializeField] private GameObject _object;
     [SerializeField] public Animator _playerAnimator;
     [SerializeField] private FindableObject _findableObject;
+    [SerializeField] private GameObject _thanksCanvas;
+    [SerializeField] private PauseMenu _pauseMenu;
 
     [Header("Feedbacks")]
     [SerializeField] private float _interactionDuration = 3f;
     public Material[] material;
+    public Texture2D _cursorTextureEnter;
+    public Texture2D _cursorTextureExit;
+    public CursorMode _cursorMode = CursorMode.Auto;
+    public Vector2 _hotSpot = Vector2.zero;
+
+    [Header("Quit BUtton")]
+    public Image quitImage;
+    public Sprite unselectQuitImage;
+    public Sprite selectQuitImage;
+    [SerializeField] private AudioSource _OnButtonSound;
+
     #endregion
 
     private void Start()
@@ -34,6 +48,7 @@ public class DoorManager : MonoBehaviour
         _objectRenderer.enabled = true;
         _objectRenderer.sharedMaterial = material[0];
         playerInteract = false;
+        _thanksCanvas.SetActive(false);
     }
 
     #region Checkers
@@ -49,14 +64,22 @@ public class DoorManager : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        _objectRenderer.sharedMaterial = material[1];
-        mouseEnter = true;
+        if(_pauseMenu._mouseOnUi == false) {
+            _objectRenderer.sharedMaterial = material[1];
+            mouseEnter = true;
+            Cursor.SetCursor(_cursorTextureEnter, _hotSpot, _cursorMode);
+        }
+        
     }
 
     private void OnMouseExit()
     {
-        _objectRenderer.sharedMaterial = material[0];
-        mouseEnter = false;
+        if(_pauseMenu._mouseOnUi == false) {
+            _objectRenderer.sharedMaterial = material[0];
+            mouseEnter = false;
+            Cursor.SetCursor(_cursorTextureExit, _hotSpot, _cursorMode);
+        }
+        
     }
     #endregion
 
@@ -73,6 +96,7 @@ public class DoorManager : MonoBehaviour
         _objectAnimator.SetBool("AnimateObject", true);
         StartCoroutine("PlayerStopInteract");
         _objectAudioSource.Play();
+        _thanksCanvas.SetActive(true);
     }
 
     private void StopObject()
@@ -85,6 +109,16 @@ public class DoorManager : MonoBehaviour
     {
         yield return new WaitForSeconds(_interactionDuration);
         playerInteract = false;
+    }
+
+    public void ChangeQuit()
+    {
+        quitImage.sprite = selectQuitImage;
+        _OnButtonSound.Play();
+    }
+    public void BackQuit()
+    {
+        quitImage.sprite = unselectQuitImage;
     }
     #endregion
 

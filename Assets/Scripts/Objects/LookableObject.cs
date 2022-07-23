@@ -26,11 +26,17 @@ public class LookableObject : MonoBehaviour
     [SerializeField] public Animator _playerAnimator;  
     [SerializeField] private Transform _cameraObjectSlot;
     [SerializeField] private Transform _lookableobject;
-   
+    [SerializeField] private PauseMenu _pauseMenu;
+
+
     [Header("Feedbacks")]
     [SerializeField] private float _interactionDuration = 3f;
     public Material[] _materialArray;
     [SerializeField] private Renderer _objectRenderer;
+    public Texture2D _cursorTextureEnter;
+    public Texture2D _cursorTextureExit;
+    public CursorMode _cursorMode = CursorMode.Auto;
+    public Vector2 _hotSpot = Vector2.zero;
     #endregion
 
     private void Start()
@@ -47,16 +53,24 @@ public class LookableObject : MonoBehaviour
     }
 
     #region Checker
-    private void OnMouseEnter()
+    public void OnMouseEnter()
     {
-        _objectRenderer.sharedMaterial = _materialArray[1];
-        mouseEnter = true;
+        if(_pauseMenu._mouseOnUi == false) {
+            _objectRenderer.sharedMaterial = _materialArray[1];
+            mouseEnter = true;
+            Cursor.SetCursor(_cursorTextureEnter, _hotSpot, _cursorMode);
+        }
+        
     }
 
     private void OnMouseExit()
     {
-        _objectRenderer.sharedMaterial = _materialArray[0];
-        mouseEnter = false;
+        if (_pauseMenu._mouseOnUi == false) {
+            _objectRenderer.sharedMaterial = _materialArray[0];
+            mouseEnter = false;
+            Cursor.SetCursor(_cursorTextureExit, _hotSpot, _cursorMode);
+        }
+        
     }
 
     public void OnTriggerEnter(Collider other)
