@@ -12,7 +12,6 @@ public class DoorManager : MonoBehaviour
     private bool _playerInInteractingZone;
     public bool _animatorBool;
     private Animator _objectAnimator;
-    private Renderer _objectRenderer;
     private AudioSource _objectAudioSource;
 
     [Header("References")]
@@ -25,11 +24,11 @@ public class DoorManager : MonoBehaviour
 
     [Header("Feedbacks")]
     [SerializeField] private float _interactionDuration = 3f;
-    public Material[] material;
+    [SerializeField] private GameObject _outlinedObject;
     public Texture2D _cursorTextureEnter;
     public Texture2D _cursorTextureExit;
-    public CursorMode _cursorMode = CursorMode.Auto;
-    public Vector2 _hotSpot = Vector2.zero;
+    [HideInInspector] public CursorMode _cursorMode = CursorMode.Auto;
+    [HideInInspector] public Vector2 _hotSpot = Vector2.zero;
 
     [Header("Quit BUtton")]
     public Image quitImage;
@@ -42,11 +41,9 @@ public class DoorManager : MonoBehaviour
     private void Start()
     {
         _objectAnimator = GetComponent<Animator>();
-        _objectRenderer = GetComponentInChildren<Renderer>();
         _objectAudioSource = GetComponent<AudioSource>();
 
-        _objectRenderer.enabled = true;
-        _objectRenderer.sharedMaterial = material[0];
+        _outlinedObject.SetActive(false);
         playerInteract = false;
         _thanksCanvas.SetActive(false);
     }
@@ -65,7 +62,7 @@ public class DoorManager : MonoBehaviour
     private void OnMouseEnter()
     {
         if(_pauseMenu._mouseOnUi == false) {
-            _objectRenderer.sharedMaterial = material[1];
+            _outlinedObject.SetActive(true);
             mouseEnter = true;
             Cursor.SetCursor(_cursorTextureEnter, _hotSpot, _cursorMode);
         }
@@ -75,7 +72,7 @@ public class DoorManager : MonoBehaviour
     private void OnMouseExit()
     {
         if(_pauseMenu._mouseOnUi == false) {
-            _objectRenderer.sharedMaterial = material[0];
+            _outlinedObject.SetActive(false);
             mouseEnter = false;
             Cursor.SetCursor(_cursorTextureExit, _hotSpot, _cursorMode);
         }

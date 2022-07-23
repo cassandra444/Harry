@@ -31,12 +31,11 @@ public class LookableObject : MonoBehaviour
 
     [Header("Feedbacks")]
     [SerializeField] private float _interactionDuration = 3f;
-    public Material[] _materialArray;
-    [SerializeField] private Renderer _objectRenderer;
+    [SerializeField] private GameObject _outlinedObject;
     public Texture2D _cursorTextureEnter;
     public Texture2D _cursorTextureExit;
-    public CursorMode _cursorMode = CursorMode.Auto;
-    public Vector2 _hotSpot = Vector2.zero;
+    [HideInInspector] public CursorMode _cursorMode = CursorMode.Auto;
+    [HideInInspector] public Vector2 _hotSpot = Vector2.zero;
     #endregion
 
     private void Start()
@@ -47,16 +46,15 @@ public class LookableObject : MonoBehaviour
         _objectAudioSource = GetComponent<AudioSource>();
         _objectVisualEffect = GetComponentInChildren<VisualEffect>();
 
-        _objectRenderer.enabled = true;
-        _objectRenderer.sharedMaterial = _materialArray[0];
+        _outlinedObject.SetActive(false);
         _cachePlane.SetActive(false);
     }
 
     #region Checker
     public void OnMouseEnter()
     {
-        if(_pauseMenu._mouseOnUi == false) {
-            _objectRenderer.sharedMaterial = _materialArray[1];
+        if(_pauseMenu._mouseOnUi == false && objectPlayed == false) {
+            _outlinedObject.SetActive(true);
             mouseEnter = true;
             Cursor.SetCursor(_cursorTextureEnter, _hotSpot, _cursorMode);
         }
@@ -65,8 +63,8 @@ public class LookableObject : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (_pauseMenu._mouseOnUi == false) {
-            _objectRenderer.sharedMaterial = _materialArray[0];
+        if (_pauseMenu._mouseOnUi == false && objectPlayed == false) {
+            _outlinedObject.SetActive(false);
             mouseEnter = false;
             Cursor.SetCursor(_cursorTextureExit, _hotSpot, _cursorMode);
         }
@@ -102,7 +100,6 @@ public class LookableObject : MonoBehaviour
         _objectAnimator.SetBool("AnimateObject", true);
         _playerAnimator.SetBool("Anim_PlayerLook", true);
         _lookableobject.position = new Vector3(_cameraObjectSlot.position.x, _cameraObjectSlot.position.y, _cameraObjectSlot.position.z);
-        _objectRenderer.sharedMaterial = _materialArray[0];
         objectPlayed = true;
         RotateOBject();
         _playerAgent.speed = 0.01f;

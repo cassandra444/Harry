@@ -329,6 +329,7 @@ Transform:
   - {fileID: 3681117356425925553}
   - {fileID: 5713327203691652801}
   - {fileID: 1512106236502599886}
+  - {fileID: 5857491118240494751}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -473,20 +474,108 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f8884f628613f4ea0b8cbbeb34f477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAgent: {fileID: 0}
-  cachePlane: {fileID: 0}
-  objectAnimator: {fileID: 5739030586926891827}
+  _player: {fileID: 0}
+  _object: {fileID: 0}
+  _cachePlane: {fileID: 0}
   _playerAnimator: {fileID: 0}
-  objectRenderer: {fileID: 1072070700516714097}
-  cameraObjectSlot: {fileID: 0}
-  lookableobject: {fileID: 3681117356425925553}
-  objectSlot: {fileID: 5739030586926891823}
+  _cameraObjectSlot: {fileID: 0}
+  _lookableobject: {fileID: 0}
+  _pauseMenu: {fileID: 0}
   _interactionDuration: 3
-  material:
-  - {fileID: 2100000, guid: a595d4c3006f69e4393df2fffb1fe7ba, type: 2}
-  - {fileID: 2100000, guid: 66908c9f3c36d2447b4e7ec53542e586, type: 2}
-  _objectAudioSource: {fileID: 5739030586926891821}
-  _objectVisualEffect: {fileID: 1512106236502599880}
+  _materialArray: []
+  _objectRenderer: {fileID: 0}
+  _cursorTextureEnter: {fileID: 0}
+  _cursorTextureExit: {fileID: 0}
+  _cursorMode: 0
+  _hotSpot: {x: 0, y: 0}
+--- !u!1 &6258268374477971060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5857491118240494751}
+  - component: {fileID: 6436831307861111576}
+  m_Layer: 3
+  m_Name: Base_Outlines
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5857491118240494751
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6258268374477971060}
+  m_LocalRotation: {x: -6.123234e-17, y: 1, z: 6.123234e-17, w: -3.7493994e-33}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5739030586926891823}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &6436831307861111576
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6258268374477971060}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 43c35c81e090f80478ea9b4cd3453121, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 3909233067320746374, guid: 1f8e2ff76b2e8e74ca8341f5d50389d5, type: 3}
+  m_Bones:
+  - {fileID: 8482666022008985447}
+  - {fileID: 9114181294961407203}
+  - {fileID: 4099441994559526221}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 9114181294961407203}
+  m_AABB:
+    m_Center: {x: 0.0005452543, y: 0.00064980856, z: 0.00040499112}
+    m_Extent: {x: 0.0011024141, y: 0.0011517168, z: 0.00046236764}
+  m_DirtyAABB: 0
 --- !u!1 &6318886423949390657
 GameObject:
   m_ObjectHideFlags: 0

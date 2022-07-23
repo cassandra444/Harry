@@ -250,6 +250,7 @@ Transform:
   - {fileID: 7938762425730477690}
   - {fileID: 7507655897964713943}
   - {fileID: 9054638646918565879}
+  - {fileID: 5137740084417256818}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -394,20 +395,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f8884f628613f4ea0b8cbbeb34f477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAgent: {fileID: 0}
-  cachePlane: {fileID: 0}
-  objectAnimator: {fileID: 6272101947961038452}
+  _player: {fileID: 0}
+  _object: {fileID: 0}
+  _cachePlane: {fileID: 0}
   _playerAnimator: {fileID: 0}
-  objectRenderer: {fileID: 3394565280819703495}
-  cameraObjectSlot: {fileID: 0}
-  lookableobject: {fileID: 7938762425730477690}
-  objectSlot: {fileID: 6647642701656263858}
+  _cameraObjectSlot: {fileID: 0}
+  _lookableobject: {fileID: 0}
+  _pauseMenu: {fileID: 0}
   _interactionDuration: 3
-  material:
-  - {fileID: 2100000, guid: f618d9e22058bf24298a16ec999fddb8, type: 2}
-  - {fileID: 2100000, guid: 66908c9f3c36d2447b4e7ec53542e586, type: 2}
-  _objectAudioSource: {fileID: 6272101947961038346}
-  _objectVisualEffect: {fileID: 9054638646918565877}
+  _materialArray: []
+  _objectRenderer: {fileID: 0}
+  _cursorTextureEnter: {fileID: 0}
+  _cursorTextureExit: {fileID: 0}
+  _cursorMode: 0
+  _hotSpot: {x: 0, y: 0}
 --- !u!1 &6584011420577968738
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,6 +442,94 @@ Transform:
   m_Father: {fileID: 7938762425730477690}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7040371304630578676
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5137740084417256818}
+  - component: {fileID: 390773816397932451}
+  m_Layer: 3
+  m_Name: Bible_Outlines
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5137740084417256818
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7040371304630578676}
+  m_LocalRotation: {x: -6.123234e-17, y: 1, z: 6.123234e-17, w: -3.7493994e-33}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6647642701656263858}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &390773816397932451
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7040371304630578676}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 43c35c81e090f80478ea9b4cd3453121, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: -5495902117074765545, guid: 29485c922fdd5cd4eaa1f923ed5e1d72, type: 3}
+  m_Bones:
+  - {fileID: 4685382191945689455}
+  - {fileID: 5949672826072149534}
+  - {fileID: 3788305979781084927}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 4685382191945689455}
+  m_AABB:
+    m_Center: {x: -0.000017238519, y: 0.00021387008, z: 0.0006894879}
+    m_Extent: {x: 0.00021036062, y: 0.0010027345, z: 0.00080310286}
+  m_DirtyAABB: 0
 --- !u!1 &7323144839970083820
 GameObject:
   m_ObjectHideFlags: 0

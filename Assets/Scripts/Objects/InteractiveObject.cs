@@ -11,7 +11,6 @@ public class InteractiveObject : MonoBehaviour
     private bool _mouseEnter;
     private bool _playerInInteractingZone;
     private Animator _objectAnimator;
-    private Renderer _objectRenderer;
     private AudioSource _objectAudioSource;
     private VisualEffect _objectVisualEffect;
 
@@ -22,22 +21,20 @@ public class InteractiveObject : MonoBehaviour
 
     [Header("Feedbacks")]
     [SerializeField] private float _interactionDuration = 3f;      
-    [SerializeField] public Material[] _materialsArray;
     public Texture2D _cursorTextureEnter;
     public Texture2D _cursorTextureExit;
-    public CursorMode _cursorMode = CursorMode.Auto;
-    public Vector2 _hotSpot = Vector2.zero;
+    [HideInInspector] public CursorMode _cursorMode = CursorMode.Auto;
+    [HideInInspector] public Vector2 _hotSpot = Vector2.zero;
+    [SerializeField] private GameObject _outlinedObject;
     #endregion
 
     private void Start()
     {
         _objectAnimator = GetComponent<Animator>();
         _objectAudioSource = GetComponent<AudioSource>();
-        _objectRenderer = GetComponentInChildren<Renderer>();
         _objectVisualEffect = GetComponentInChildren<VisualEffect>();
 
-        _objectRenderer.enabled = true;
-        _objectRenderer.sharedMaterial = _materialsArray[0];
+        _outlinedObject.SetActive(false);
         _playerInteract = false;       
     }
 
@@ -56,7 +53,7 @@ public class InteractiveObject : MonoBehaviour
     {
         if(_pauseMenu._mouseOnUi == false)
         {
-            _objectRenderer.sharedMaterial = _materialsArray[1];
+            _outlinedObject.SetActive(true);
             _mouseEnter = true;
             Cursor.SetCursor(_cursorTextureEnter, _hotSpot, _cursorMode);
         }
@@ -65,10 +62,12 @@ public class InteractiveObject : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if(_pauseMenu._mouseOnUi == false)
-        _objectRenderer.sharedMaterial = _materialsArray[0];
-        _mouseEnter = false;
-        Cursor.SetCursor(_cursorTextureExit, _hotSpot, _cursorMode);
+        if (_pauseMenu._mouseOnUi == false) {
+            _outlinedObject.SetActive(false);
+            _mouseEnter = false;
+            Cursor.SetCursor(_cursorTextureExit, _hotSpot, _cursorMode);
+        }
+        
     }
     #endregion
 

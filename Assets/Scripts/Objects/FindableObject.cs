@@ -14,7 +14,6 @@ public class FindableObject : MonoBehaviour
     private bool _playerInInteractingZone;
     [HideInInspector] public bool _objectFinded;
     private NavMeshAgent _playerAgent;
-    private Renderer _objectRenderer;
     private Transform _objectSlot;
     private AudioSource _objectAudioSource;
     private VisualEffect _objectVisualEffect;
@@ -32,24 +31,22 @@ public class FindableObject : MonoBehaviour
 
     [Header("Feedbacks")]
     [SerializeField] private float _interactionDuration = 3f;
-    public Material[] _materialArray;
+    [SerializeField] private GameObject _outlinedObject;
     public Texture2D _cursorTextureEnter;
     public Texture2D _cursorTextureExit;
-    public CursorMode _cursorMode = CursorMode.Auto;
-    public Vector2 _hotSpot = Vector2.zero;
+    [HideInInspector] public CursorMode _cursorMode = CursorMode.Auto;
+    [HideInInspector] public Vector2 _hotSpot = Vector2.zero;
     #endregion
 
     private void Start()
     {
         _playerAgent = _player.GetComponent<NavMeshAgent>();
-        _objectRenderer = GetComponentInChildren<Renderer>();
         _objectSlot = _object.transform;
         _objectAudioSource = GetComponent<AudioSource>();
         _objectVisualEffect = GetComponentInChildren<VisualEffect>();
 
         _objectFinded = false;
-        _objectRenderer.enabled = true;
-        _objectRenderer.sharedMaterial = _materialArray[0];
+        _outlinedObject.SetActive(false);
         _cachePlane.SetActive(false);
         _congratText.SetActive(false);
         _harryShoes.SetActive(false);
@@ -58,9 +55,9 @@ public class FindableObject : MonoBehaviour
     #region Checker
     private void OnMouseEnter()
     {
-        if (_pauseMenu._mouseOnUi == false)
+        if (_pauseMenu._mouseOnUi == false && objectPlayed == false)
         {
-            _objectRenderer.sharedMaterial = _materialArray[1];
+            _outlinedObject.SetActive(true);
             mouseEnter = true;
             Cursor.SetCursor(_cursorTextureEnter, _hotSpot, _cursorMode);
         }      
@@ -68,9 +65,9 @@ public class FindableObject : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if(_pauseMenu._mouseOnUi == false)
+        if(_pauseMenu._mouseOnUi == false && objectPlayed == false)
         {
-            _objectRenderer.sharedMaterial = _materialArray[0];
+            _outlinedObject.SetActive(false);
             mouseEnter = false;
             Cursor.SetCursor(_cursorTextureExit, _hotSpot, _cursorMode);
         }     
@@ -104,7 +101,6 @@ public class FindableObject : MonoBehaviour
     {
         _playerAnimator.SetBool("Anim_PlayerLook", true);
         _lookableobject.position = new Vector3(_cameraObjectSlot.position.x, _cameraObjectSlot.position.y, _cameraObjectSlot.position.z);
-        _objectRenderer.sharedMaterial = _materialArray[0];
         objectPlayed = true;
         RotateOBject();
         _playerAgent.speed = 0.01f;

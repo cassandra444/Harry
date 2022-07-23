@@ -386,6 +386,101 @@ Transform:
   m_Father: {fileID: 130976275121107377}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4058945453713560691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2557135208433670276}
+  - component: {fileID: 7471609328816129680}
+  m_Layer: 3
+  m_Name: WritteMachine_Outline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2557135208433670276
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4058945453713560691}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3820980276625547897}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &7471609328816129680
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4058945453713560691}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 43c35c81e090f80478ea9b4cd3453121, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: -8783905486519963115, guid: 6709ceac97bc39d4285b4df184ed8921, type: 3}
+  m_Bones:
+  - {fileID: 130976275121107377}
+  - {fileID: 1298262000719230729}
+  - {fileID: 7920926530721962754}
+  - {fileID: 5337552685288028831}
+  - {fileID: 2759088186105596482}
+  - {fileID: 3744662512677390768}
+  - {fileID: 3052522314745501544}
+  - {fileID: 9016697700134504184}
+  - {fileID: 4590902134939890848}
+  - {fileID: 1472851256308364226}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 1472851256308364226}
+  m_AABB:
+    m_Center: {x: -0.0011668357, y: 0.0014313401, z: -0.0015114013}
+    m_Extent: {x: 0.0014741605, y: 0.0019078332, z: 0.0019418676}
+  m_DirtyAABB: 0
 --- !u!1 &4116288496426741916
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,6 +580,7 @@ Transform:
   - {fileID: 7309499656334344995}
   - {fileID: 2101824516959759593}
   - {fileID: 9166199282576933536}
+  - {fileID: 2557135208433670276}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -629,16 +725,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd0b009150f30d46af61b9607bd3567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animatorBool: 0
-  _objectAnimator: {fileID: 3820980276625547901}
-  _objectRenderer: {fileID: 1232803561965356640}
+  _object: {fileID: 0}
   _playerAnimator: {fileID: 0}
+  _pauseMenu: {fileID: 0}
   _interactionDuration: 3
-  _objectAudioSource: {fileID: 3820980276625547899}
-  _objectVisualEffect: {fileID: 9166199282576933550}
-  material:
-  - {fileID: 2100000, guid: e8c0cda581029e64a9cf8a1632df70e7, type: 2}
-  - {fileID: 2100000, guid: 66908c9f3c36d2447b4e7ec53542e586, type: 2}
+  _materialsArray: []
+  _cursorTextureEnter: {fileID: 0}
+  _cursorTextureExit: {fileID: 0}
+  _cursorMode: 0
+  _hotSpot: {x: 0, y: 0}
 --- !u!1 &5612307114263894340
 GameObject:
   m_ObjectHideFlags: 0
