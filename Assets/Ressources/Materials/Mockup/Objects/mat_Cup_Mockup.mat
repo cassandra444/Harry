@@ -213,6 +213,7 @@ Material:
     - _NormalScale: 1
     - _Normal_Strength: 1
     - _OpaqueCullMode: 2
+    - _OutlinesWidth: 0
     - _PPDLodThreshold: 5
     - _PPDMaxSamples: 15
     - _PPDMinSamples: 5
@@ -227,7 +228,7 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessRemapMax: 1
     - _SmoothnessRemapMin: 0
-    - _Smoothness_Strength: 1
+    - _Smoothness_Strength: 0.3
     - _SpecularAAScreenSpaceVariance: 0.1
     - _SpecularAAThreshold: 0.2
     - _SpecularOcclusionMode: 1
