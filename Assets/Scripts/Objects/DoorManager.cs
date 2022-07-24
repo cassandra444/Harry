@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 using UnityEngine.UI;
+using TMPro;
 
 public class DoorManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class DoorManager : MonoBehaviour
     public bool _animatorBool;
     private Animator _objectAnimator;
     private AudioSource _objectAudioSource;
+    private TextMeshProUGUI _dialogueText;
 
     [Header("References")]
     [SerializeField] private GameObject _player;
@@ -29,6 +31,9 @@ public class DoorManager : MonoBehaviour
     public Texture2D _cursorTextureExit;
     [HideInInspector] public CursorMode _cursorMode = CursorMode.Auto;
     [HideInInspector] public Vector2 _hotSpot = Vector2.zero;
+    [SerializeField] private GameObject _dialogueCanvas;
+    [SerializeField] private string _dialogue;
+    [SerializeField] private string _dialogueTwo;
 
     [Header("Quit BUtton")]
     public Image quitImage;
@@ -42,10 +47,12 @@ public class DoorManager : MonoBehaviour
     {
         _objectAnimator = GetComponent<Animator>();
         _objectAudioSource = GetComponent<AudioSource>();
+        _dialogueText = _dialogueCanvas.GetComponentInChildren<TextMeshProUGUI>();
 
         _outlinedObject.SetActive(false);
         playerInteract = false;
         _thanksCanvas.SetActive(false);
+        _dialogueText.text = "";
     }
 
     #region Checkers
@@ -85,6 +92,7 @@ public class DoorManager : MonoBehaviour
     private void PlayCloseDoor()
     {      
         _playerAnimator.SetBool("Anim_PlayerInteracting", true);
+        StartCoroutine("PlayerTalk");
         StartCoroutine("PlayerStopInteract");
     }
 
@@ -106,8 +114,20 @@ public class DoorManager : MonoBehaviour
     {
         yield return new WaitForSeconds(_interactionDuration);
         playerInteract = false;
+        _dialogueText.text = "";
     }
 
+    private IEnumerator PlayerTalk()
+    {
+        yield return new WaitForSeconds(_interactionDuration / 2f);
+        _dialogueText.text = _dialogue;
+    }
+
+    private IEnumerator PlayerTalkTwo()
+    {
+        yield return new WaitForSeconds(_interactionDuration / 2f);
+        _dialogueText.text = _dialogueTwo;
+    }
     public void ChangeQuit()
     {
         quitImage.sprite = selectQuitImage;

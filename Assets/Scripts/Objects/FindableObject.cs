@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 using UnityEngine.AI;
+using TMPro;
 
 public class FindableObject : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class FindableObject : MonoBehaviour
     private Transform _objectSlot;
     private AudioSource _objectAudioSource;
     private VisualEffect _objectVisualEffect;
+    private TextMeshProUGUI _dialogueText;
 
     [Header("References")]
     [SerializeField] private GameObject _player;
@@ -37,6 +39,8 @@ public class FindableObject : MonoBehaviour
     [HideInInspector] public CursorMode _cursorMode = CursorMode.Auto;
     [HideInInspector] public Vector2 _hotSpot = Vector2.zero;
     [SerializeField] private GameObject _LookableUI;
+    [SerializeField] private GameObject _dialogueCanvas;
+    [SerializeField] private string _dialogue;
     #endregion
 
     private void Start()
@@ -45,6 +49,7 @@ public class FindableObject : MonoBehaviour
         _objectSlot = _object.transform;
         _objectAudioSource = GetComponent<AudioSource>();
         _objectVisualEffect = GetComponentInChildren<VisualEffect>();
+        _dialogueText = _dialogueCanvas.GetComponentInChildren<TextMeshProUGUI>();
 
         _objectFinded = false;
         _outlinedObject.SetActive(false);
@@ -52,6 +57,7 @@ public class FindableObject : MonoBehaviour
         _congratText.SetActive(false);
         _harryShoes.SetActive(false);
         _LookableUI.SetActive(false);
+        _dialogueText.text = "";
     }
 
     #region Checker
@@ -109,6 +115,7 @@ public class FindableObject : MonoBehaviour
         _cachePlane.SetActive(true);
         _congratText.SetActive(true);
         _LookableUI.SetActive(true);
+        StartCoroutine("PlayerTalk");
     }
 
     private void StopObject()
@@ -131,6 +138,13 @@ public class FindableObject : MonoBehaviour
     {
         yield return new WaitForSeconds(_interactionDuration);
         playerInteract = false;
+        _dialogueText.text = "";
+    }
+
+    private IEnumerator PlayerTalk()
+    {
+        yield return new WaitForSeconds(_interactionDuration / 2f);
+        _dialogueText.text = _dialogue;
     }
     #endregion
 

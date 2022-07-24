@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 using UnityEngine.AI;
+using TMPro;
 
 public class LookableObject : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class LookableObject : MonoBehaviour
     private Transform _objectSlot;
     private AudioSource _objectAudioSource;
     private VisualEffect _objectVisualEffect;
+    private TextMeshProUGUI _dialogueText;
 
     [Header("References")]
     [SerializeField] GameObject _player;
@@ -37,6 +39,8 @@ public class LookableObject : MonoBehaviour
     [HideInInspector] public CursorMode _cursorMode = CursorMode.Auto;
     [HideInInspector] public Vector2 _hotSpot = Vector2.zero;
     [SerializeField] private GameObject _LookableUI;
+    [SerializeField] private GameObject _dialogueCanvas;
+    [SerializeField] private string _dialogue;
     #endregion
 
     private void Start()
@@ -46,10 +50,12 @@ public class LookableObject : MonoBehaviour
         _objectSlot = _object.transform;
         _objectAudioSource = GetComponent<AudioSource>();
         _objectVisualEffect = GetComponentInChildren<VisualEffect>();
+        _dialogueText = _dialogueCanvas.GetComponentInChildren<TextMeshProUGUI>();
 
         _outlinedObject.SetActive(false);
         _cachePlane.SetActive(false);
         _LookableUI.SetActive(false);
+        _dialogueText.text = "";
     }
 
     #region Checker
@@ -122,7 +128,6 @@ public class LookableObject : MonoBehaviour
         _cachePlane.SetActive(false);
         _LookableUI.SetActive(false);
         StartCoroutine("PlayerStopInteract");
-        
     }
 
    
@@ -131,12 +136,13 @@ public class LookableObject : MonoBehaviour
     {
         yield return new WaitForSeconds(_interactionDuration);
         playerInteract = false;
+        _dialogueText.text = "";
     }
 
     private IEnumerator PlayerTalk()
     {
         yield return new WaitForSeconds(_interactionDuration / 2f);
-        Debug.Log("player talk");
+        _dialogueText.text = _dialogue;
     }
     #endregion
 

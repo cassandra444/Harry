@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using TMPro;
 
 public class InteractiveObject : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class InteractiveObject : MonoBehaviour
     private Animator _objectAnimator;
     private AudioSource _objectAudioSource;
     private VisualEffect _objectVisualEffect;
+    private TextMeshProUGUI _dialogueText;
 
     [Header("References")]
     [SerializeField] private GameObject _object;   
@@ -26,6 +28,8 @@ public class InteractiveObject : MonoBehaviour
     [HideInInspector] public CursorMode _cursorMode = CursorMode.Auto;
     [HideInInspector] public Vector2 _hotSpot = Vector2.zero;
     [SerializeField] private GameObject _outlinedObject;
+    [SerializeField] private GameObject _dialogueCanvas;
+    [SerializeField] private string _dialogue;
     #endregion
 
     private void Start()
@@ -33,9 +37,11 @@ public class InteractiveObject : MonoBehaviour
         _objectAnimator = GetComponent<Animator>();
         _objectAudioSource = GetComponent<AudioSource>();
         _objectVisualEffect = GetComponentInChildren<VisualEffect>();
+        _dialogueText = _dialogueCanvas.GetComponentInChildren<TextMeshProUGUI>();
 
         _outlinedObject.SetActive(false);
-        _playerInteract = false;       
+        _playerInteract = false;
+        _dialogueText.text = "";
     }
 
     #region Checkers
@@ -76,6 +82,7 @@ public class InteractiveObject : MonoBehaviour
     {     
         _objectAnimator.SetBool("AnimateObject", true);
         _playerAnimator.SetBool("Anim_PlayerInteracting", true);
+        StartCoroutine("PlayerTalk");
         StartCoroutine("PlayerStopInteract");
     }
 
@@ -85,12 +92,20 @@ public class InteractiveObject : MonoBehaviour
         _playerAnimator.SetBool("Anim_PlayerInteracting", false);
         _objectAudioSource.Play();
         _objectVisualEffect.Play();
+
     }
 
     private IEnumerator PlayerStopInteract()
     {
         yield return new WaitForSeconds(_interactionDuration);
         _playerInteract = false;
+        _dialogueText.text = "";
+    }
+
+    private IEnumerator PlayerTalk()
+    {
+        yield return new WaitForSeconds(_interactionDuration / 2f);
+        _dialogueText.text = _dialogue;
     }
     #endregion
 
