@@ -36,6 +36,7 @@ public class LookableObject : MonoBehaviour
     public Texture2D _cursorTextureExit;
     [HideInInspector] public CursorMode _cursorMode = CursorMode.Auto;
     [HideInInspector] public Vector2 _hotSpot = Vector2.zero;
+    [SerializeField] private GameObject _LookableUI;
     #endregion
 
     private void Start()
@@ -48,6 +49,7 @@ public class LookableObject : MonoBehaviour
 
         _outlinedObject.SetActive(false);
         _cachePlane.SetActive(false);
+        _LookableUI.SetActive(false);
     }
 
     #region Checker
@@ -104,6 +106,8 @@ public class LookableObject : MonoBehaviour
         RotateOBject();
         _playerAgent.speed = 0.01f;
         _cachePlane.SetActive(true);
+        _LookableUI.SetActive(true);
+        StartCoroutine("PlayerTalk");
     }
 
     private void StopObject ()
@@ -116,13 +120,23 @@ public class LookableObject : MonoBehaviour
         _lookableobject.rotation = _objectSlot.rotation;
         _playerAgent.speed = 1.5f;
         _cachePlane.SetActive(false);
+        _LookableUI.SetActive(false);
         StartCoroutine("PlayerStopInteract");
+        
     }
+
+   
 
     private IEnumerator PlayerStopInteract()
     {
         yield return new WaitForSeconds(_interactionDuration);
         playerInteract = false;
+    }
+
+    private IEnumerator PlayerTalk()
+    {
+        yield return new WaitForSeconds(_interactionDuration / 2f);
+        Debug.Log("player talk");
     }
     #endregion
 

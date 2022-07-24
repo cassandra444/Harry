@@ -36,6 +36,7 @@ public class FindableObject : MonoBehaviour
     public Texture2D _cursorTextureExit;
     [HideInInspector] public CursorMode _cursorMode = CursorMode.Auto;
     [HideInInspector] public Vector2 _hotSpot = Vector2.zero;
+    [SerializeField] private GameObject _LookableUI;
     #endregion
 
     private void Start()
@@ -50,6 +51,7 @@ public class FindableObject : MonoBehaviour
         _cachePlane.SetActive(false);
         _congratText.SetActive(false);
         _harryShoes.SetActive(false);
+        _LookableUI.SetActive(false);
     }
 
     #region Checker
@@ -106,6 +108,7 @@ public class FindableObject : MonoBehaviour
         _playerAgent.speed = 0.01f;
         _cachePlane.SetActive(true);
         _congratText.SetActive(true);
+        _LookableUI.SetActive(true);
     }
 
     private void StopObject()
@@ -120,6 +123,7 @@ public class FindableObject : MonoBehaviour
         _playerAgent.speed = 1.5f;
         _cachePlane.SetActive(false);
         _congratText.SetActive(false);
+        _LookableUI.SetActive(false);
         StartCoroutine("PlayerStopInteract");
     }
 
