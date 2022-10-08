@@ -32,7 +32,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Turn_DeskChair
+  m_Name: InteractiveCup
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -46,7 +46,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -623603649343465320, guid: c041c2d941fec8b43b9bb0fec283d91b, type: 3}
+  m_Motion: {fileID: -623603649343465320, guid: 222e4585d4770e14d887ff62324b6bbd, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
