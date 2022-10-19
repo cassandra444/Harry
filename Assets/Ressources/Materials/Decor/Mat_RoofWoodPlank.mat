@@ -110,7 +110,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Smoothness:
-        m_Texture: {fileID: 2800000, guid: 290de25c3259e8b45bbcd1782dd02250, type: 3}
+        m_Texture: {fileID: 2800000, guid: d36a2627a6eccaf469b6cd4bb17ea640, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularColorMap:
