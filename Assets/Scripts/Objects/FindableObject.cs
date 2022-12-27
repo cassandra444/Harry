@@ -17,7 +17,7 @@ public class FindableObject : MonoBehaviour
     private NavMeshAgent _playerAgent;
     private Transform _objectSlot;
     private AudioSource _objectAudioSource;
-    private VisualEffect _objectVisualEffect;
+    //private VisualEffect _objectVisualEffect;
     private TextMeshProUGUI _dialogueText;
 
     [Header("References")]
@@ -48,7 +48,7 @@ public class FindableObject : MonoBehaviour
         _playerAgent = _player.GetComponent<NavMeshAgent>();
         _objectSlot = _object.transform;
         _objectAudioSource = GetComponent<AudioSource>();
-        _objectVisualEffect = GetComponentInChildren<VisualEffect>();
+        //_objectVisualEffect = GetComponentInChildren<VisualEffect>();
         _dialogueText = _dialogueCanvas.GetComponentInChildren<TextMeshProUGUI>();
 
         _objectFinded = false;
@@ -83,7 +83,11 @@ public class FindableObject : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) _playerInInteractingZone = true;
+        if (other.CompareTag("Player"))
+        {
+            _playerInInteractingZone = true;
+        }
+        
     }
 
     public void OnTriggerExit(Collider other)
@@ -156,7 +160,7 @@ public class FindableObject : MonoBehaviour
         else
         {
             _objectAudioSource.Play();
-            _objectVisualEffect.Play();
+            //_objectVisualEffect.Play();
         }
 
         if (playerInteract == true && _playerInInteractingZone == true && Input.GetMouseButton(1)) StopObject();

@@ -18,7 +18,7 @@ public class LookableObject : MonoBehaviour
     private Animator _objectAnimator; 
     private Transform _objectSlot;
     private AudioSource _objectAudioSource;
-    private VisualEffect _objectVisualEffect;
+    //private VisualEffect _objectVisualEffect;
     private TextMeshProUGUI _dialogueText;
 
     [Header("References")]
@@ -49,7 +49,7 @@ public class LookableObject : MonoBehaviour
         _objectAnimator = GetComponent<Animator>();
         _objectSlot = _object.transform;
         _objectAudioSource = GetComponent<AudioSource>();
-        _objectVisualEffect = GetComponentInChildren<VisualEffect>();
+        //_objectVisualEffect = GetComponentInChildren<VisualEffect>();
         _dialogueText = _dialogueCanvas.GetComponentInChildren<TextMeshProUGUI>();
 
         _outlinedObject.SetActive(false);
@@ -154,7 +154,7 @@ public class LookableObject : MonoBehaviour
         else
         {
             _objectAudioSource.Play();
-            _objectVisualEffect.Play();
+           // _objectVisualEffect.Play();
         }
 
         if (playerInteract == true && _playerInInteractingZone == true && Input.GetMouseButton(1)) StopObject();
