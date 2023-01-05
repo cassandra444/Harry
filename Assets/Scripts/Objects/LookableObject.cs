@@ -110,6 +110,7 @@ public class LookableObject : MonoBehaviour
         _lookableobject.position = new Vector3(_cameraObjectSlot.position.x, _cameraObjectSlot.position.y, _cameraObjectSlot.position.z);
         objectPlayed = true;
         RotateOBject();
+        _outlinedObject.SetActive(false);
         _playerAgent.speed = 0.01f;
         _cachePlane.SetActive(true);
         _LookableUI.SetActive(true);
