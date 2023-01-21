@@ -12,8 +12,6 @@ public class InteractiveObject : MonoBehaviour
     private bool _mouseEnter;
     private bool _playerInInteractingZone;
     private Animator _objectAnimator;
-    private AudioSource _objectAudioSource;
-    //private VisualEffect _objectVisualEffect;
     private TextMeshProUGUI _dialogueText;
 
     [Header("References")]
@@ -35,8 +33,6 @@ public class InteractiveObject : MonoBehaviour
     private void Start()
     {
         _objectAnimator = GetComponent<Animator>();
-        _objectAudioSource = GetComponent<AudioSource>();
-        //_objectVisualEffect = GetComponentInChildren<VisualEffect>();
         _dialogueText = _dialogueCanvas.GetComponentInChildren<TextMeshProUGUI>();
 
         _outlinedObject.SetActive(false);
@@ -90,8 +86,6 @@ public class InteractiveObject : MonoBehaviour
     {
         _objectAnimator.SetBool("AnimateObject", false);
         _playerAnimator.SetBool("Anim_PlayerInteracting", false);
-        _objectAudioSource.Play();
-       // _objectVisualEffect.Play();
 
     }
 

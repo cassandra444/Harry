@@ -17,13 +17,13 @@ public class LookableObject : MonoBehaviour
     private NavMeshAgent _playerAgent;
     private Animator _objectAnimator; 
     private Transform _objectSlot;
-    private AudioSource _objectAudioSource;
     private TextMeshProUGUI _dialogueText;
 
     [Header("References")]
     [SerializeField] GameObject _player;
     [SerializeField] GameObject _object;
     [SerializeField] private GameObject _cachePlane;
+    [SerializeField] private GameObject _SoundObject;
     [SerializeField] public Animator _playerAnimator;  
     [SerializeField] private Transform _cameraObjectSlot;
     [SerializeField] private Transform _lookableobject;
@@ -47,10 +47,10 @@ public class LookableObject : MonoBehaviour
         _playerAgent = _player.GetComponent<NavMeshAgent>();
         _objectAnimator = GetComponent<Animator>();
         _objectSlot = _object.transform;
-        _objectAudioSource = GetComponent<AudioSource>();
         _dialogueText = _dialogueCanvas.GetComponentInChildren<TextMeshProUGUI>();
 
         _outlinedObject.SetActive(false);
+        _SoundObject.SetActive(false);
         _cachePlane.SetActive(false);
         _LookableUI.SetActive(false);
         _dialogueText.text = "";
@@ -105,6 +105,7 @@ public class LookableObject : MonoBehaviour
     {
         _objectAnimator.SetBool("AnimateObject", true);
         _playerAnimator.SetBool("Anim_PlayerLook", true);
+        _SoundObject.SetActive(true);
         _lookableobject.position = new Vector3(_cameraObjectSlot.position.x, _cameraObjectSlot.position.y, _cameraObjectSlot.position.z);
         objectPlayed = true;
         RotateOBject();
@@ -117,6 +118,7 @@ public class LookableObject : MonoBehaviour
 
     private void StopObject ()
     {
+        _SoundObject.SetActive(false);
         _objectAnimator.SetBool("AnimateObject", false);
         _playerAnimator.SetBool("Anim_PlayerLook", false);
         objectPlayed = false;
@@ -150,10 +152,7 @@ public class LookableObject : MonoBehaviour
         if (mouseEnter == true && Input.GetMouseButton(0)) playerInteract = true;
 
         if (playerInteract == true && _playerInInteractingZone == true) PlayObject();
-        else
-        {
-            _objectAudioSource.Play();         
-        }
+   
 
         if (playerInteract == true && _playerInInteractingZone == true && Input.GetMouseButton(1)) StopObject();
     }
