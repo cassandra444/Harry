@@ -24,6 +24,7 @@ public class LookableObject : MonoBehaviour
     [SerializeField] GameObject _object;
     [SerializeField] private GameObject _cachePlane;
     [SerializeField] private GameObject _SoundObject;
+    [SerializeField] private GameObject _DialogueSound;
     [SerializeField] public Animator _playerAnimator;  
     [SerializeField] private Transform _cameraObjectSlot;
     [SerializeField] private Transform _lookableobject;
@@ -137,13 +138,16 @@ public class LookableObject : MonoBehaviour
     {
         yield return new WaitForSeconds(_interactionDuration);
         playerInteract = false;
+        _DialogueSound.SetActive(false);
         _dialogueText.text = "";
     }
 
     private IEnumerator PlayerTalk()
     {
+        
         yield return new WaitForSeconds(_interactionDuration / 2f);
         _dialogueText.text = _dialogue;
+        _DialogueSound.SetActive(true);
     }
     #endregion
 

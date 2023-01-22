@@ -20,7 +20,9 @@ public class InteractiveObject : MonoBehaviour
     [SerializeField] private PauseMenu _pauseMenu;
 
     [Header("Feedbacks")]
-    [SerializeField] private float _interactionDuration = 3f;      
+    [SerializeField] private float _interactionDuration = 3f;
+    [SerializeField] private GameObject _Soundobject;
+    [SerializeField] private GameObject _DialogueSound;
     public Texture2D _cursorTextureEnter;
     public Texture2D _cursorTextureExit;
     [HideInInspector] public CursorMode _cursorMode = CursorMode.Auto;
@@ -36,6 +38,8 @@ public class InteractiveObject : MonoBehaviour
         _dialogueText = _dialogueCanvas.GetComponentInChildren<TextMeshProUGUI>();
 
         _outlinedObject.SetActive(false);
+        _DialogueSound.SetActive(false);
+        _Soundobject.SetActive(false);
         _playerInteract = false;
         _dialogueText.text = "";
     }
@@ -77,6 +81,7 @@ public class InteractiveObject : MonoBehaviour
     private void PlayObject()
     {     
         _objectAnimator.SetBool("AnimateObject", true);
+        _Soundobject.SetActive(true);
         _playerAnimator.SetBool("Anim_PlayerInteracting", true);
         StartCoroutine("PlayerTalk");
         StartCoroutine("PlayerStopInteract");
@@ -85,6 +90,7 @@ public class InteractiveObject : MonoBehaviour
     private void StopObject ()
     {
         _objectAnimator.SetBool("AnimateObject", false);
+        _Soundobject.SetActive(false);
         _playerAnimator.SetBool("Anim_PlayerInteracting", false);
 
     }
@@ -93,12 +99,17 @@ public class InteractiveObject : MonoBehaviour
     {
         yield return new WaitForSeconds(_interactionDuration);
         _playerInteract = false;
+        _DialogueSound.SetActive(false);
         _dialogueText.text = "";
     }
 
     private IEnumerator PlayerTalk()
     {
+
+        _DialogueSound.SetActive(true);
+
         yield return new WaitForSeconds(_interactionDuration / 2f);
+
         _dialogueText.text = _dialogue;
     }
     #endregion

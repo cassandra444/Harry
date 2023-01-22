@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu_Mockup.unity
     guid: b9729b45275e9684bab04e7c528d6d8d
   - enabled: 1
-    path: Assets/Scenes/Mockup.unity
-    guid: bb3d04caf4f3ce44b95e01ca0162e4ef
+    path: Assets/Scenes/Mockup_V2.unity
+    guid: 1c22ec41979e6ed42b13d1f5dbcb6942
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 5939f63ed2845314a92bf3473b3f9dc9, type: 2}

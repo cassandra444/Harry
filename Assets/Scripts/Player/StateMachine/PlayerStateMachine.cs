@@ -10,6 +10,8 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] NavMeshAgent playerAgent;
     [SerializeField] Camera playerCamera;
     [SerializeField] Animator playerAnimator;
+    [SerializeField] GameObject walkStepSound;
+    [SerializeField] GameObject idleSound;
     public LayerMask _walkMask;
 
      RaycastHit hit;
@@ -33,6 +35,8 @@ public class PlayerStateMachine : MonoBehaviour
     public Camera PlayerCamera { get { return playerCamera; } }
     public Animator PlayerAnimator { get { return playerAnimator; } }
     public RaycastHit Hit { get { return hit; } }
+    public GameObject WalkStepSound { get { return walkStepSound; } }
+    public GameObject IdleSound { get { return idleSound; } }
 
     //Animations
     public int VelocityHash { get { return _velocityHash; } }
@@ -80,11 +84,17 @@ public class PlayerStateMachine : MonoBehaviour
         if (playerAgent.velocity.magnitude > 0)
         {
             _velocity += Time.deltaTime * _acceleration;
+            walkStepSound.SetActive(true);
+            idleSound.SetActive(false);
+
         }
 
         if (playerAgent.velocity.magnitude <= 0.1f)
         {
             _velocity -= Time.deltaTime * _decceleration;
+            walkStepSound.SetActive(false);
+            idleSound.SetActive(true);
+
         }
 
         playerAnimator.SetFloat(_velocityHash, _velocity);
@@ -95,15 +105,21 @@ public class PlayerStateMachine : MonoBehaviour
 
             Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
 
+            //if (Physics.Raycast(ray, out hit, Mathf.Infinity, _walkMask)&&PlayerInInteractingZone==false)
+
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, _walkMask))
             {
-                _playerIsMoving = true;
+                _playerIsMoving = true;              
             }
             else _playerIsMoving = false;
         }
         else _playerIsMoving = false;
 
-        
+        /*if(_playerInInteractingZone == true)
+        {
+            Debug.Log("Interact");
+        }*/
+
       
     }
 

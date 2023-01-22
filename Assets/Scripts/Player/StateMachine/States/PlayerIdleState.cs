@@ -10,6 +10,7 @@ public class PlayerIdleState : PlayerBase
     public override void EnterState() 
     {
         DoIdle();
+        
     }
     public override void UpdateState() 
     {
@@ -33,5 +34,6 @@ public class PlayerIdleState : PlayerBase
     private void DoIdle()
     {
         
+
     }
 }
