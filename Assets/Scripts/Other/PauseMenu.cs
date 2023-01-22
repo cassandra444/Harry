@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour
 {
     public bool _mouseOnUi;
+    public GameObject _AmbiantSound;
     [Header("Global")]
     public GameObject _PauseMenuCanvas;
     [SerializeField] private AudioSource _OnButtonSound;
@@ -29,6 +30,7 @@ public class PauseMenu : MonoBehaviour
     public void Start()
     {
         _PauseMenuCanvas.SetActive(false);
+        
     }
 
     #region Button Actions
@@ -37,11 +39,13 @@ public class PauseMenu : MonoBehaviour
         _PauseMenuCanvas.SetActive(true);
         _mouseOnUi = true;
         Time.timeScale = 0;
+        _AmbiantSound.SetActive(false);
     }
 
     public void ResumeGame()
     {
         _PauseMenuCanvas.SetActive(false);
+        _AmbiantSound.SetActive(true);
         _mouseOnUi = false;
         Time.timeScale = 1f;
     }

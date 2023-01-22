@@ -105,22 +105,18 @@ public class PlayerStateMachine : MonoBehaviour
 
             Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
 
-            //if (Physics.Raycast(ray, out hit, Mathf.Infinity, _walkMask)&&PlayerInInteractingZone==false)
-
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, _walkMask))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, _walkMask) && PlayerInInteractingZone == false)
             {
-                _playerIsMoving = true;              
+                _playerIsMoving = true;                
             }
-            else _playerIsMoving = false;
+            else
+            {
+                _playerIsMoving = false;
+                PlayerInInteractingZone = false;
+            }
         }
         else _playerIsMoving = false;
-
-        /*if(_playerInInteractingZone == true)
-        {
-            Debug.Log("Interact");
-        }*/
-
-      
+     
     }
 
     
