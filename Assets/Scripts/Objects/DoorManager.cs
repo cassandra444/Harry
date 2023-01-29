@@ -13,7 +13,9 @@ public class DoorManager : MonoBehaviour
     private bool _playerInInteractingZone;
     public bool _animatorBool;
     private Animator _objectAnimator;
-    private AudioSource _objectAudioSource;
+    public GameObject _ButtonSound;
+    public GameObject _DoorSound;
+    public GameObject _DialogueSound;
     private TextMeshProUGUI _dialogueText;
 
     [Header("References")]
@@ -39,14 +41,16 @@ public class DoorManager : MonoBehaviour
     public Image quitImage;
     public Sprite unselectQuitImage;
     public Sprite selectQuitImage;
-    [SerializeField] private AudioSource _OnButtonSound;
+    //[SerializeField] private AudioSource _OnButtonSound;
 
     #endregion
 
     private void Start()
     {
         _objectAnimator = GetComponent<Animator>();
-        _objectAudioSource = GetComponent<AudioSource>();
+        _ButtonSound.SetActive(false);
+        _DoorSound.SetActive(false);
+        _DialogueSound.SetActive(false);
         _dialogueText = _dialogueCanvas.GetComponentInChildren<TextMeshProUGUI>();
 
         _outlinedObject.SetActive(false);
@@ -92,15 +96,17 @@ public class DoorManager : MonoBehaviour
     private void PlayCloseDoor()
     {      
         _playerAnimator.SetBool("Anim_PlayerInteracting", true);
-        StartCoroutine("PlayerTalk");
+        StartCoroutine("PlayerTalk");    
         StartCoroutine("PlayerStopInteract");
+        _DialogueSound.SetActive(false);
     }
 
     private void PlayOpenDoor()
     {
         _objectAnimator.SetBool("AnimateObject", true);
+        _DoorSound.SetActive(true);
         StartCoroutine("PlayerStopInteract");
-        _objectAudioSource.Play();
+        _DialogueSound.SetActive(false);
         _thanksCanvas.SetActive(true);
     }
 
@@ -113,6 +119,7 @@ public class DoorManager : MonoBehaviour
     private IEnumerator PlayerStopInteract()
     {
         yield return new WaitForSeconds(_interactionDuration);
+        _DoorSound.SetActive(false);      
         playerInteract = false;
         _dialogueText.text = "";
     }
@@ -120,6 +127,7 @@ public class DoorManager : MonoBehaviour
     private IEnumerator PlayerTalk()
     {
         yield return new WaitForSeconds(_interactionDuration / 2f);
+        _DialogueSound.SetActive(true);
         _dialogueText.text = _dialogue;
     }
 
@@ -127,15 +135,17 @@ public class DoorManager : MonoBehaviour
     {
         yield return new WaitForSeconds(_interactionDuration / 2f);
         _dialogueText.text = _dialogueTwo;
+        _DialogueSound.SetActive(true);
     }
     public void ChangeQuit()
     {
         quitImage.sprite = selectQuitImage;
-        _OnButtonSound.Play();
+        _ButtonSound.SetActive(true);
     }
     public void BackQuit()
     {
         quitImage.sprite = unselectQuitImage;
+        _ButtonSound.SetActive(false);
     }
     #endregion
 

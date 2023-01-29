@@ -10,7 +10,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject _AmbiantSound;
     [Header("Global")]
     public GameObject _PauseMenuCanvas;
-    [SerializeField] private AudioSource _OnButtonSound;
+    public Image _PauseMenuSprite;
+    [SerializeField] private GameObject _OnButtonSound;
 
     [Header("Pause Button")]
     public Image pauseImage;
@@ -18,19 +19,20 @@ public class PauseMenu : MonoBehaviour
     public Sprite selectPauseImage;
 
     [Header("Resume Button")]
-    public Image resumeImage;
+    //public Image resumeImage;
     public Sprite unselectResumeImage;
     public Sprite selectResumeImage;
 
     [Header("Quit BUtton")]
-    public Image quitImage;
+    //public Image quitImage;
     public Sprite unselectQuitImage;
     public Sprite selectQuitImage;
 
     public void Start()
     {
         _PauseMenuCanvas.SetActive(false);
-        
+        _OnButtonSound.SetActive(false);
+
     }
 
     #region Button Actions
@@ -60,34 +62,37 @@ public class PauseMenu : MonoBehaviour
     public void ChangePause()
     {
         pauseImage.sprite = selectPauseImage;
-        _OnButtonSound.Play();
+        _OnButtonSound.SetActive(true);
     }
 
     public void BackPause()
     {
         pauseImage.sprite = unselectPauseImage;
+        _OnButtonSound.SetActive(false);
     }
     public void ChangeResume()
     {
-        resumeImage.sprite = selectResumeImage;
-        _OnButtonSound.Play();
+        _PauseMenuSprite.sprite = selectResumeImage;
+        _OnButtonSound.SetActive(true);
     }
 
     public void BackResume()
     {
-        resumeImage.sprite = unselectResumeImage;
+        _PauseMenuSprite.sprite = unselectResumeImage;
+        _OnButtonSound.SetActive(false);
     }
 
 
     public void ChangeQuit()
     {
-        quitImage.sprite = selectQuitImage;
-        _OnButtonSound.Play();
+        _PauseMenuSprite.sprite = selectQuitImage;
+        _OnButtonSound.SetActive(true);
     }
 
     public void BackQuit()
     {
-        quitImage.sprite = unselectQuitImage;
+        _PauseMenuSprite.sprite = unselectQuitImage;
+        _OnButtonSound.SetActive(false);
     }
     #endregion
 
