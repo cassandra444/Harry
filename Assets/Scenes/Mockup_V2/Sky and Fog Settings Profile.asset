@@ -21,16 +21,16 @@ MonoBehaviour:
     m_Value: 1
   colorMode:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   color:
-    m_OverrideState: 0
-    m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 0.28642836, b: 0, a: 1}
   tint:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   maxFogDistance:
     m_OverrideState: 1
-    m_Value: 40
+    m_Value: 10
   mipFogMaxMip:
     m_OverrideState: 0
     m_Value: 0.5
@@ -42,10 +42,10 @@ MonoBehaviour:
     m_Value: 1000
   baseHeight:
     m_OverrideState: 1
-    m_Value: 80
+    m_Value: 1
   maximumHeight:
     m_OverrideState: 1
-    m_Value: 572
+    m_Value: 20
   meanFreePath:
     m_OverrideState: 0
     m_Value: 400
@@ -105,13 +105,13 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 1
   cloudType:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   skyAmbientMode:
     m_OverrideState: 1
     m_Value: 1
   windOrientation:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   windSpeed:
     m_OverrideState: 0
@@ -133,8 +133,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   rotation:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 139
   skyIntensityMode:
     m_OverrideState: 1
     m_Value: 1
@@ -152,7 +152,7 @@ MonoBehaviour:
     m_Value: {x: 0.28378946, y: 0.4097086, z: 0.5}
   desiredLuxValue:
     m_OverrideState: 1
-    m_Value: 1000
+    m_Value: 800
   updateMode:
     m_OverrideState: 0
     m_Value: 0
